@@ -1,0 +1,9 @@
+D:\NESReportsAPI\NESReportsDAL\bin\Debug\NESReportsDAL.dll
+D:\NESReportsAPI\NESReportsDAL\bin\Debug\NESReportsDAL.pdb
+D:\NESReportsAPI\NESReportsDAL\bin\Debug\NESReportsDTO.dll
+D:\NESReportsAPI\NESReportsDAL\bin\Debug\NESReportsDTO.pdb
+D:\NESReportsAPI\NESReportsDAL\obj\Debug\NESReportsDAL.csprojAssemblyReference.cache
+D:\NESReportsAPI\NESReportsDAL\obj\Debug\NESReportsDAL.csproj.CoreCompileInputs.cache
+D:\NESReportsAPI\NESReportsDAL\obj\Debug\NESReportsDAL.csproj.CopyComplete
+D:\NESReportsAPI\NESReportsDAL\obj\Debug\NESReportsDAL.dll
+D:\NESReportsAPI\NESReportsDAL\obj\Debug\NESReportsDAL.pdb

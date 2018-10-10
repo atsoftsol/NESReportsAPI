@@ -1,0 +1,9 @@
+D:\NESReportsAPI\NESReportsBLL\bin\Debug\NESReportsBLL.dll
+D:\NESReportsAPI\NESReportsBLL\bin\Debug\NESReportsBLL.pdb
+D:\NESReportsAPI\NESReportsBLL\bin\Debug\NESReportsDTO.dll
+D:\NESReportsAPI\NESReportsBLL\bin\Debug\NESReportsDTO.pdb
+D:\NESReportsAPI\NESReportsBLL\obj\Debug\NESReportsBLL.csprojAssemblyReference.cache
+D:\NESReportsAPI\NESReportsBLL\obj\Debug\NESReportsBLL.csproj.CoreCompileInputs.cache
+D:\NESReportsAPI\NESReportsBLL\obj\Debug\NESReportsBLL.csproj.CopyComplete
+D:\NESReportsAPI\NESReportsBLL\obj\Debug\NESReportsBLL.dll
+D:\NESReportsAPI\NESReportsBLL\obj\Debug\NESReportsBLL.pdb
