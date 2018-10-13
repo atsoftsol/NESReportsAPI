@@ -7,3 +7,15 @@ D:\NESReportsAPI\NESReportsDAL\obj\Debug\NESReportsDAL.csproj.CoreCompileInputs.
 D:\NESReportsAPI\NESReportsDAL\obj\Debug\NESReportsDAL.csproj.CopyComplete
 D:\NESReportsAPI\NESReportsDAL\obj\Debug\NESReportsDAL.dll
 D:\NESReportsAPI\NESReportsDAL\obj\Debug\NESReportsDAL.pdb
+D:\Project Gouse\visualstudioApi\NESReportsAPI\NESReportsDAL\bin\Debug\NESReportsDAL.dll
+D:\Project Gouse\visualstudioApi\NESReportsAPI\NESReportsDAL\bin\Debug\NESReportsDAL.pdb
+D:\Project Gouse\visualstudioApi\NESReportsAPI\NESReportsDAL\bin\Debug\Google.Protobuf.dll
+D:\Project Gouse\visualstudioApi\NESReportsAPI\NESReportsDAL\bin\Debug\MySql.Data.dll
+D:\Project Gouse\visualstudioApi\NESReportsAPI\NESReportsDAL\bin\Debug\NESReportsDTO.dll
+D:\Project Gouse\visualstudioApi\NESReportsAPI\NESReportsDAL\bin\Debug\Newtonsoft.Json.dll
+D:\Project Gouse\visualstudioApi\NESReportsAPI\NESReportsDAL\bin\Debug\Google.Protobuf.xml
+D:\Project Gouse\visualstudioApi\NESReportsAPI\NESReportsDAL\bin\Debug\MySql.Data.xml
+D:\Project Gouse\visualstudioApi\NESReportsAPI\NESReportsDAL\bin\Debug\NESReportsDTO.pdb
+D:\Project Gouse\visualstudioApi\NESReportsAPI\NESReportsDAL\bin\Debug\Newtonsoft.Json.xml
+D:\Project Gouse\visualstudioApi\NESReportsAPI\NESReportsDAL\obj\Debug\NESReportsDAL.dll
+D:\Project Gouse\visualstudioApi\NESReportsAPI\NESReportsDAL\obj\Debug\NESReportsDAL.pdb

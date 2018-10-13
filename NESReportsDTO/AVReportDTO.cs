@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NESReportsDAL
+namespace NESReportsDTO
 {
-    public class Class1
+    public  class AVReportDTO
     {
     }
 }
