@@ -28,7 +28,7 @@ namespace NESReportsAPI.Controllers
 
                 if (stateCodes != string.Empty && districtCodes != string.Empty && branchCodes != string.Empty)
                 {
-                    return avReportBLL.GetUsageDistrictsByStatesandDistrict(stateCodes, districtCodes);
+                    return avReportBLL.GetUsageBranchByStateandDistrict(stateCodes, districtCodes);
                 }
                 else 
                 {
