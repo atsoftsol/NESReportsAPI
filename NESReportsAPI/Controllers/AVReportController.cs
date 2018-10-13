@@ -77,6 +77,7 @@ namespace NESReportsAPI.Controllers
         /// <param name="stateCodes"></param>
         /// <returns></returns>
         [HttpGet]
+        [Route("api/AVReport/GetStateWiseUsageReport/{stateCodes}")]
         public string GetStateWiseUsageReport(string stateCodes)
         {
 
@@ -107,6 +108,7 @@ namespace NESReportsAPI.Controllers
         /// <param name="branchCodes"></param>
         /// <returns></returns>
         [HttpGet]
+        [Route("api/AVReport/GetUsageReport/{stateCodes}")]
         public string GetUsageReport(string stateCodes, string districtCodes, string branchCodes)
         {
 
