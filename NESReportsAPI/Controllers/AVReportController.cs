@@ -32,7 +32,7 @@ namespace NESReportsAPI.Controllers
                 }
                 else 
                 {
-                    return avReportBLL.GetUsageDistrictsByStatesandDistrict(stateCodes, districtCodes);
+                    return avReportBLL.GetUsageBranchByStateandDistrictandBranch(stateCodes, districtCodes, branchCodes);
                 }
             }
             catch (Exception ex)

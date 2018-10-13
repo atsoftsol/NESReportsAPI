@@ -85,5 +85,17 @@ namespace NESReportsBLL
 
             return null;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="StateCodes"></param>
+        /// <param name="DistrictCodes"></param>
+        /// <param name="BranchCodes"></param>
+        /// <returns></returns>
+        public string GetUsageBranchByStateandDistrictandBranch(string StateCodes, string DistrictCodes, string BranchCodes)
+        {
+            return avReportDAL.GetUsageBranchByStateandDistrictandBranch(StateCodes, DistrictCodes, BranchCodes);
+        }
     }
 }

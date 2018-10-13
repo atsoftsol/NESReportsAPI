@@ -138,5 +138,33 @@ namespace NESReportsDAL
             return null;
         }
 
+        public string GetUsageBranchByStateandDistrictandBranch(string StateCodes, string DistrictCodes, string BranchCodes )
+        {
+            try
+            {
+                string connectionString = ConfigurationManager.ConnectionStrings["connstring"].ConnectionString;
+                using (MySqlConnection con = new MySqlConnection(connectionString))
+                {
+                    using (MySqlCommand cmd = new MySqlCommand("GetUsageBranchByStateandDistrictandBranch", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@StateCodes", StateCodes);
+                        cmd.Parameters.AddWithValue("@DistrictCodes", DistrictCodes);
+                        cmd.Parameters.AddWithValue("@BranchCodes", BranchCodes);
+                        using (MySqlDataAdapter sda = new MySqlDataAdapter(cmd))
+                        {
+                            return CommonDAL.DataTableToJsonstring(cmd);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return null;
+        }
+
     }
 }
