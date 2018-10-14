@@ -15,11 +15,11 @@ namespace NESReportsBLL
         /// </summary>
         /// <param name="StateCodes"></param>
         /// <returns></returns>
-        public string GetUsageStateByStates(string StateCodes)
+        public string GetUsageStateByStates(string StateCodes, string StartDate, string EndDate)
         {
             try
             {
-                return avReportDAL.GetUsageStateByStates(StateCodes);
+                return avReportDAL.GetUsageStateByStates(StateCodes, StartDate, EndDate);
             }
             catch (Exception ex)
             {
@@ -34,11 +34,11 @@ namespace NESReportsBLL
         /// </summary>
         /// <param name="StateCodes"></param>
         /// <returns></returns>
-        public string GetUsageDistrictByStates(string StateCodes)
+        public string GetUsageDistrictByStates(string StateCodes, string StartDate, string EndDate)
         {
             try
             {
-                return avReportDAL.GetUsageDistrictByStates(StateCodes);
+                return avReportDAL.GetUsageDistrictByStates(StateCodes,StartDate, EndDate);
             }
             catch (Exception ex)
             {
@@ -53,11 +53,11 @@ namespace NESReportsBLL
         /// </summary>
         /// <param name="StateCodes"></param>
         /// <returns></returns>
-        public string GetUsageDistrictsByStatesandDistrict(string StateCodes, string DistrictCodes)
+        public string GetUsageDistrictsByStatesandDistrict(string StateCodes, string DistrictCodes, string StartDate, string EndDate)
         {
             try
             {
-                return avReportDAL.GetUsageDistrictsByStatesandDistrict(StateCodes, DistrictCodes);
+                return avReportDAL.GetUsageDistrictsByStatesandDistrict(StateCodes, DistrictCodes, StartDate, EndDate);
             }
             catch (Exception ex)
             {
@@ -72,11 +72,11 @@ namespace NESReportsBLL
         /// </summary>
         /// <param name="StateCodes"></param>
         /// <returns></returns>
-        public string GetUsageBranchByStateandDistrict(string StateCodes, string DistrictCodes)
+        public string GetUsageBranchByStateandDistrict(string StateCodes, string DistrictCodes, string StartDate, string EndDate)
         {
             try
             {
-                return avReportDAL.GetUsageBranchByStateandDistrict(StateCodes, DistrictCodes);
+                return avReportDAL.GetUsageBranchByStateandDistrict(StateCodes, DistrictCodes, StartDate, EndDate);
             }
             catch (Exception ex)
             {
@@ -93,9 +93,21 @@ namespace NESReportsBLL
         /// <param name="DistrictCodes"></param>
         /// <param name="BranchCodes"></param>
         /// <returns></returns>
-        public string GetUsageBranchByStateandDistrictandBranch(string StateCodes, string DistrictCodes, string BranchCodes)
+        public string GetUsageBranchByStateandDistrictandBranch(string StateCodes, string DistrictCodes, string BranchCodes, string StartDate, string EndDate)
         {
-            return avReportDAL.GetUsageBranchByStateandDistrictandBranch(StateCodes, DistrictCodes, BranchCodes);
+            return avReportDAL.GetUsageBranchByStateandDistrictandBranch(StateCodes, DistrictCodes, BranchCodes, StartDate, EndDate);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="StateCodes"></param>
+        /// <param name="DistrictCodes"></param>
+        /// <param name="BranchCodes"></param>
+        /// <returns></returns>
+        public string GetClassByStateandDistrictandBranch(string StateCodes, string DistrictCodes, string BranchCodes, string StartDate, string EndDate)
+        {
+            return avReportDAL.GetClassByStateandDistrictandBranch(StateCodes, DistrictCodes, BranchCodes, StartDate, EndDate);
         }
     }
 }

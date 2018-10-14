@@ -19,4 +19,3 @@ D:\Project Gouse\visualstudioApi\NESReportsAPI\NESReportsDAL\bin\Debug\NESReport
 D:\Project Gouse\visualstudioApi\NESReportsAPI\NESReportsDAL\bin\Debug\Newtonsoft.Json.xml
 D:\Project Gouse\visualstudioApi\NESReportsAPI\NESReportsDAL\obj\Debug\NESReportsDAL.dll
 D:\Project Gouse\visualstudioApi\NESReportsAPI\NESReportsDAL\obj\Debug\NESReportsDAL.pdb
-D:\Project Gouse\visualstudioApi\NESReportsAPI\NESReportsDAL\obj\Debug\NESReportsDAL.csprojResolveAssemblyReference.cache

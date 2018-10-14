@@ -3,3 +3,7 @@ D:\NESReportsAPI\NESReportsDTO\bin\Debug\NESReportsDTO.pdb
 D:\NESReportsAPI\NESReportsDTO\obj\Debug\NESReportsDTO.csproj.CoreCompileInputs.cache
 D:\NESReportsAPI\NESReportsDTO\obj\Debug\NESReportsDTO.dll
 D:\NESReportsAPI\NESReportsDTO\obj\Debug\NESReportsDTO.pdb
+D:\Project Gouse\visualstudioApi\NESReportsAPI\NESReportsDTO\bin\Debug\NESReportsDTO.dll
+D:\Project Gouse\visualstudioApi\NESReportsAPI\NESReportsDTO\bin\Debug\NESReportsDTO.pdb
+D:\Project Gouse\visualstudioApi\NESReportsAPI\NESReportsDTO\obj\Debug\NESReportsDTO.dll
+D:\Project Gouse\visualstudioApi\NESReportsAPI\NESReportsDTO\obj\Debug\NESReportsDTO.pdb

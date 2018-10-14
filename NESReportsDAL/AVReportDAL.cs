@@ -17,7 +17,7 @@ namespace NESReportsDAL
         /// </summary>
         /// <param name="StateCodes"></param>
         /// <returns></returns>
-        public string GetUsageStateByStates(string StateCodes)
+        public string GetUsageStateByStates(string StateCodes, string StartDate, string EndDate)
         {
             try
             {
@@ -28,6 +28,8 @@ namespace NESReportsDAL
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@StateCodes", StateCodes);
+                        cmd.Parameters.AddWithValue("@StartDate", StartDate);
+                        cmd.Parameters.AddWithValue("@EndDate", EndDate);
                         using (MySqlDataAdapter sda = new MySqlDataAdapter(cmd))
                         {
                             return CommonDAL.DataTableToJsonstring(cmd);
@@ -48,7 +50,7 @@ namespace NESReportsDAL
         /// </summary>
         /// <param name="StateCodes"></param>
         /// <returns></returns>
-        public string GetUsageDistrictByStates(string StateCodes)
+        public string GetUsageDistrictByStates(string StateCodes, string StartDate, string EndDate)
         {
             try
             {
@@ -59,6 +61,8 @@ namespace NESReportsDAL
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@StateCodes", StateCodes);
+                        cmd.Parameters.AddWithValue("@StartDate", StartDate);
+                        cmd.Parameters.AddWithValue("@EndDate", EndDate);
                         using (MySqlDataAdapter sda = new MySqlDataAdapter(cmd))
                         {
                             return CommonDAL.DataTableToJsonstring(cmd);
@@ -79,7 +83,7 @@ namespace NESReportsDAL
         /// </summary>
         /// <param name="StateCodes"></param>
         /// <returns></returns>
-        public string GetUsageDistrictsByStatesandDistrict(string StateCodes, string DistrictCodes)
+        public string GetUsageDistrictsByStatesandDistrict(string StateCodes, string DistrictCodes, string StartDate, string EndDate)
         {
             try
             {
@@ -91,6 +95,8 @@ namespace NESReportsDAL
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@StateCodes", StateCodes);
                         cmd.Parameters.AddWithValue("@DistrictCodes", DistrictCodes);
+                        cmd.Parameters.AddWithValue("@StartDate", StartDate);
+                        cmd.Parameters.AddWithValue("@EndDate", EndDate);
                         using (MySqlDataAdapter sda = new MySqlDataAdapter(cmd))
                         {
                             return CommonDAL.DataTableToJsonstring(cmd);
@@ -111,7 +117,7 @@ namespace NESReportsDAL
         /// </summary>
         /// <param name="StateCodes"></param>
         /// <returns></returns>
-        public string GetUsageBranchByStateandDistrict(string StateCodes, string DistrictCodes)
+        public string GetUsageBranchByStateandDistrict(string StateCodes, string DistrictCodes, string StartDate, string EndDate)
         {
             try
             {
@@ -123,6 +129,8 @@ namespace NESReportsDAL
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@StateCodes", StateCodes);
                         cmd.Parameters.AddWithValue("@DistrictCodes", DistrictCodes);
+                        cmd.Parameters.AddWithValue("@StartDate", StartDate.Replace(@"\", "").Replace(@"""", @""));
+                        cmd.Parameters.AddWithValue("@EndDate", EndDate.Replace(@"\", "").Replace(@"""", @""));
                         using (MySqlDataAdapter sda = new MySqlDataAdapter(cmd))
                         {
                             return CommonDAL.DataTableToJsonstring(cmd);
@@ -137,8 +145,15 @@ namespace NESReportsDAL
 
             return null;
         }
-
-        public string GetUsageBranchByStateandDistrictandBranch(string StateCodes, string DistrictCodes, string BranchCodes )
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="StateCodes"></param>
+        /// <param name="DistrictCodes"></param>
+        /// <param name="BranchCodes"></param>
+        /// <returns></returns>
+        public string GetUsageBranchByStateandDistrictandBranch(string StateCodes, string DistrictCodes, string BranchCodes, string StartDate, string EndDate)
         {
             try
             {
@@ -151,6 +166,8 @@ namespace NESReportsDAL
                         cmd.Parameters.AddWithValue("@StateCodes", StateCodes);
                         cmd.Parameters.AddWithValue("@DistrictCodes", DistrictCodes);
                         cmd.Parameters.AddWithValue("@BranchCodes", BranchCodes);
+                        cmd.Parameters.AddWithValue("@StartDate", StartDate);
+                        cmd.Parameters.AddWithValue("@EndDate", EndDate);
                         using (MySqlDataAdapter sda = new MySqlDataAdapter(cmd))
                         {
                             return CommonDAL.DataTableToJsonstring(cmd);
@@ -165,6 +182,46 @@ namespace NESReportsDAL
 
             return null;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="StateCodes"></param>
+        /// <param name="DistrictCodes"></param>
+        /// <returns></returns>
+        public string GetClassByStateandDistrictandBranch(string StateCodes, string DistrictCodes, string BranchCodes, string StartDate, string EndDate)
+        {
+            try
+            {
+                string connectionString = ConfigurationManager.ConnectionStrings["connstring"].ConnectionString;
+                using (MySqlConnection con = new MySqlConnection(connectionString))
+                {
+                    using (MySqlCommand cmd = new MySqlCommand("GetClassByStateandDistrictandBranch", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@StateCodes", StateCodes);
+                        cmd.Parameters.AddWithValue("@DistrictCodes", DistrictCodes);
+                        cmd.Parameters.AddWithValue("@BranchCodes", BranchCodes);
+                        cmd.Parameters.AddWithValue("@StartDate", StartDate);
+                        cmd.Parameters.AddWithValue("@EndDate", EndDate);
+                        using (MySqlDataAdapter sda = new MySqlDataAdapter(cmd))
+                        {
+                            return CommonDAL.DataTableToJsonstring(cmd);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return null;
+        }
+
+      
+
+      
 
     }
 }
