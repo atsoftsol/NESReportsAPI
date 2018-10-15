@@ -12,6 +12,11 @@ namespace NESReportsDAL
 {
     public class CommonDAL
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cmd"></param>
+        /// <returns></returns>
         public static string DataTableToJsonstring(MySqlCommand cmd)
         {
             using (MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter(cmd))
@@ -28,7 +33,11 @@ namespace NESReportsDAL
             return null;
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cmd"></param>
+        /// <returns></returns>
         public static string OracleDataTableToJsonstring(OracleCommand cmd)
         {
             using (OracleDataAdapter sqlDataAdapter = new OracleDataAdapter(cmd))

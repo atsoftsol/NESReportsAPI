@@ -29,7 +29,6 @@ namespace NESReportsAPI.Controllers
             }
         }
 
-
         /// <summary>
         /// 
         /// </summary>
@@ -69,6 +68,12 @@ namespace NESReportsAPI.Controllers
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ReportType"></param>
+        /// <param name="category"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("api/CommonHeader/GetSubCategoryByReportTypeAndCategory/{ReportType}/{category}")]
         public string GetSubCategoryByReportTypeAndCategory(int ReportType, int category)

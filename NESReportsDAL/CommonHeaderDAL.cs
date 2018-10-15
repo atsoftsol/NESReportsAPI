@@ -86,7 +86,6 @@ namespace NESReportsDAL
 
         }
 
-
         /// <summary>
         /// 
         /// </summary>
@@ -112,7 +111,6 @@ namespace NESReportsDAL
             }
 
         }
-
 
         /// <summary>
         /// 
