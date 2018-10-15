@@ -7,7 +7,6 @@ D:\NESReportsAPI\NESReportsBLL\obj\Debug\NESReportsBLL.csproj.CoreCompileInputs.
 D:\NESReportsAPI\NESReportsBLL\obj\Debug\NESReportsBLL.csproj.CopyComplete
 D:\NESReportsAPI\NESReportsBLL\obj\Debug\NESReportsBLL.dll
 D:\NESReportsAPI\NESReportsBLL\obj\Debug\NESReportsBLL.pdb
-D:\Project Gouse\visualstudioApi\NESReportsAPI\NESReportsBLL\obj\Debug\NESReportsBLL.csprojResolveAssemblyReference.cache
 D:\Project Gouse\visualstudioApi\NESReportsAPI\NESReportsBLL\bin\Debug\NESReportsBLL.dll
 D:\Project Gouse\visualstudioApi\NESReportsAPI\NESReportsBLL\bin\Debug\NESReportsBLL.pdb
 D:\Project Gouse\visualstudioApi\NESReportsAPI\NESReportsBLL\bin\Debug\NESReportsDAL.dll
@@ -18,3 +17,5 @@ D:\Project Gouse\visualstudioApi\NESReportsAPI\NESReportsBLL\bin\Debug\NESReport
 D:\Project Gouse\visualstudioApi\NESReportsAPI\NESReportsBLL\bin\Debug\Newtonsoft.Json.xml
 D:\Project Gouse\visualstudioApi\NESReportsAPI\NESReportsBLL\obj\Debug\NESReportsBLL.dll
 D:\Project Gouse\visualstudioApi\NESReportsAPI\NESReportsBLL\obj\Debug\NESReportsBLL.pdb
+D:\Project Gouse\visualstudioApi\NESReportsAPI\NESReportsBLL\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\Project Gouse\visualstudioApi\NESReportsAPI\NESReportsBLL\obj\Debug\NESReportsBLL.csprojResolveAssemblyReference.cache

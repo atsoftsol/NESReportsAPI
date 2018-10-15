@@ -132,3 +132,4 @@ D:\Project Gouse\visualstudioApi\NESReportsAPI\NESReportsAPI\bin\NESReportsDAL.p
 D:\Project Gouse\visualstudioApi\NESReportsAPI\NESReportsAPI\obj\Debug\NESReportsAPI.csprojResolveAssemblyReference.cache
 D:\Project Gouse\visualstudioApi\NESReportsAPI\NESReportsAPI\obj\Debug\NESReportsAPI.dll
 D:\Project Gouse\visualstudioApi\NESReportsAPI\NESReportsAPI\obj\Debug\NESReportsAPI.pdb
+D:\Project Gouse\visualstudioApi\NESReportsAPI\NESReportsAPI\bin\Oracle.ManagedDataAccess.dll
