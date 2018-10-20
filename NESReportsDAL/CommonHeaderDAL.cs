@@ -6,17 +6,113 @@ using System.Threading.Tasks;
 using System.Data;
 using Oracle.ManagedDataAccess.Client;
 using System.Configuration;
+using NESReportsDTO;
+using MySql.Data.MySqlClient;
 
 namespace NESReportsDAL
 {
     public class CommonHeaderDAL
     {
 
+
+        /// <summary>
+        /// get States List
+        /// </summary>
+        /// <returns></returns>
+        public List<States> GetStatesList()
+        {
+            try
+            {
+                MySqlParameter param = new MySqlParameter();
+                param.ParameterName = "@p_country_id";
+                param.Value = 1;
+                DataSet ds = CommonDAL.GetRecordWithExtendedTimeOut("GET_STATES", param);
+                List<States> model = new List<States>();
+                if (ds != null)
+                {
+                    //Pass datatable from dataset to our DAL Method.
+                    model = CommonDAL.CreateListFromTable<States>(ds.Tables[0]);
+                }
+                return model;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public List<Districts> GetDistrictList(string stateIds)
+        {
+            try
+            {
+                MySqlParameter param = new MySqlParameter();
+                param.ParameterName = "@p_state_ids";
+                param.Value = CommonDAL.AddingDoubleCodes(stateIds);
+                DataSet dsDistrict = CommonDAL.GetRecordWithExtendedTimeOut("GET_DISTRICTS", param);
+                List<Districts> model = new List<Districts>();
+                if (dsDistrict != null)
+                {
+                    //Pass datatable from dataset to our DAL Method.
+                    model = CommonDAL.CreateListFromTable<Districts>(dsDistrict.Tables[0]);
+                }
+                return model;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public List<Branches> GetBranches(string districtIds)
+        {
+            try
+            {
+                MySqlParameter[] parameters = {
+                new MySqlParameter("@p_district_ids",  CommonDAL.AddingDoubleCodes(districtIds))
+                     };
+
+                DataSet dsDistrict = CommonDAL.GetRecordWithExtendedTimeOut("GET_BRANCHES", parameters);
+                List<Branches> model = new List<Branches>();
+                if (dsDistrict != null)
+                {
+                    //Pass datatable from dataset to our DAL Method.
+                    model = CommonDAL.CreateListFromTable<Branches>(dsDistrict.Tables[0]);
+                }
+                return model;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public List<Course> GetClasses()
+        {
+            try
+            {
+                DataSet dsCourse = CommonDAL.GetRecordWithExtendedTimeOut("GET_COURSES");
+                List<Course> model = new List<Course>();
+                if (dsCourse != null)
+                {
+                    //Pass datatable from dataset to our DAL Method.
+                    model = CommonDAL.CreateListFromTable<Course>(dsCourse.Tables[0]);
+                }
+                return model;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+
+
+
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        public string GetStates()
+        public AVReportDTO GetStates()
         {
             string connectionString = ConfigurationManager.ConnectionStrings["OracleString"].ConnectionString;
             using (OracleConnection con = new OracleConnection(connectionString))
@@ -24,7 +120,7 @@ namespace NESReportsDAL
                 using (OracleCommand cmd = new OracleCommand("GET_STATES", con))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("iCOUNTRYSLNO",OracleDbType.Int32).Value = 1;
+                    cmd.Parameters.Add("iCOUNTRYSLNO", OracleDbType.Int32).Value = 1;
                     cmd.Parameters.Add("DATACUR", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
 
                     using (OracleDataAdapter sda = new OracleDataAdapter(cmd))
@@ -39,9 +135,9 @@ namespace NESReportsDAL
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="StateCodes"></param>
+        /// <param name="stateCodes"></param>
         /// <returns></returns>
-        public string GetDistrict(int StateCodes)
+        public AVReportDTO GetDistrict(int stateCodes)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["OracleString"].ConnectionString;
             using (OracleConnection con = new OracleConnection(connectionString))
@@ -49,7 +145,7 @@ namespace NESReportsDAL
                 using (OracleCommand cmd = new OracleCommand("GET_DISTRICTS", con))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("iSTATESLNO", OracleDbType.Int32).Value = StateCodes;
+                    cmd.Parameters.Add("iSTATESLNO", OracleDbType.Int32).Value = stateCodes;
                     cmd.Parameters.Add("DATACUR", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
 
                     using (OracleDataAdapter sda = new OracleDataAdapter(cmd))
@@ -66,7 +162,7 @@ namespace NESReportsDAL
         /// </summary>
         /// <param name="StateCodes"></param>
         /// <returns></returns>
-        public string GetCategoryByReportId(int ReportType)
+        public AVReportDTO GetCategoryByReportId(int reportType)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["OracleString"].ConnectionString;
             using (OracleConnection con = new OracleConnection(connectionString))
@@ -74,7 +170,7 @@ namespace NESReportsDAL
                 using (OracleCommand cmd = new OracleCommand("GET_INSPECTION_REPORT_CATEGORY", con))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("iREPORTTYPESLNO", OracleDbType.Int32).Value = ReportType;
+                    cmd.Parameters.Add("iREPORTTYPESLNO", OracleDbType.Int32).Value = reportType;
                     cmd.Parameters.Add("DATACUR", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
 
                     using (OracleDataAdapter sda = new OracleDataAdapter(cmd))
@@ -91,7 +187,7 @@ namespace NESReportsDAL
         /// </summary>
         /// <param name="StateCodes"></param>
         /// <returns></returns>
-        public string GetSubCategoryByReportTypeAndCategory(int ReportType, int category)
+        public AVReportDTO GetSubCategoryByReportTypeAndCategory(int reportType, int category)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["OracleString"].ConnectionString;
             using (OracleConnection con = new OracleConnection(connectionString))
@@ -100,7 +196,7 @@ namespace NESReportsDAL
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add("iCATEGORYSLNO", OracleDbType.Int32).Value = category;
-                    cmd.Parameters.Add("iREPORTTYPESLNO", OracleDbType.Int32).Value = ReportType;
+                    cmd.Parameters.Add("iREPORTTYPESLNO", OracleDbType.Int32).Value = reportType;
                     cmd.Parameters.Add("DATACUR", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
 
                     using (OracleDataAdapter sda = new OracleDataAdapter(cmd))
@@ -117,7 +213,7 @@ namespace NESReportsDAL
         /// </summary>
         /// <param name="StateCodes"></param>
         /// <returns></returns>
-        public string GetReports()
+        public AVReportDTO GetReports()
         {
             string connectionString = ConfigurationManager.ConnectionStrings["OracleString"].ConnectionString;
             using (OracleConnection con = new OracleConnection(connectionString))

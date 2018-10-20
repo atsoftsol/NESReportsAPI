@@ -46,10 +46,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="NESReportsBLL">
+    <Reference Include="NESReportsBLL, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\NESReportsBLL\bin\Debug\NESReportsBLL.dll</HintPath>
     </Reference>
-    <Reference Include="NESReportsDTO">
+    <Reference Include="NESReportsDTO, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\NESReportsDTO\bin\Debug\NESReportsDTO.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.DataSetExtensions" />

@@ -5,27 +5,29 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using NESReportsBLL;
+using NESReportsDTO;
 
 namespace NESReportsAPI.Controllers
 {
+    [RoutePrefix("api/common")]
     public class CommonHeaderController : ApiController
     {
+
+        CommonHeaderBLL commonHeaderBLL = new CommonHeaderBLL();
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
-        [Route("api/CommonHeader/GetStates")]
-        public string GetStates()
+        [Route("states")]
+        public List<States> GetStates()
         {
             try
-            {
-                CommonHeaderBLL commonHeaderBLL = new CommonHeaderBLL();
+            { 
                 return commonHeaderBLL.GetStates();
             }
             catch (Exception ex)
             {
-                return ex.StackTrace;
+                return null;
             }
         }
 
@@ -33,59 +35,85 @@ namespace NESReportsAPI.Controllers
         /// 
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
-        [Route("api/CommonHeader/GetDistricts/{stateID}")]
-        public string GetDistrict(int stateID)
+        [Route("districts/{stateIds}")]
+        public List<Districts> GetDistrict(string stateIds)
         {
             try
             {
                 CommonHeaderBLL commonHeaderBLL = new CommonHeaderBLL();
-                return commonHeaderBLL.GetDistrict(stateID);
+                return commonHeaderBLL.GetDistrict(stateIds);
             }
             catch (Exception ex)
             {
-                return ex.StackTrace;
+                return null;
             }
         }
+
+        [Route("branches/{districtIds}")]
+        public List<Branches> GetBranches(string districtIds)
+        {
+            try
+            {
+                CommonHeaderBLL commonHeaderBLL = new CommonHeaderBLL();
+                return commonHeaderBLL.GetBranches(districtIds);
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        [Route("courses")]
+        public List<Course> GetClasses()
+        {
+            try
+            {
+                CommonHeaderBLL commonHeaderBLL = new CommonHeaderBLL();
+                return commonHeaderBLL.GetClasses();
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="ReportType"></param>
+        /// <param name="reportType"></param>
         /// <returns></returns>
-        [HttpGet]
-        [Route("api/CommonHeader/GetCategoryByReportId/{ReportType}")]
-        public string GetCategoryByReportId(int ReportType)
+        [Route("categorybyreport/{reportType}")]
+        public AVReportDTO GetCategoryByReportId(int reportType)
         {
             try
             {
                 CommonHeaderBLL commonHeaderBLL = new CommonHeaderBLL();
-                return commonHeaderBLL.GetCategoryByReportId(ReportType);
+                return commonHeaderBLL.GetCategoryByReportId(reportType);
             }
             catch (Exception ex)
             {
-                return ex.StackTrace;
+                return null;
             }
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="ReportType"></param>
+        /// <param name="reportType"></param>
         /// <param name="category"></param>
         /// <returns></returns>
-        [HttpGet]
-        [Route("api/CommonHeader/GetSubCategoryByReportTypeAndCategory/{ReportType}/{category}")]
-        public string GetSubCategoryByReportTypeAndCategory(int ReportType, int category)
+        [Route("subcategorybyreportandcategory/{reportType}/{category}")]
+        public AVReportDTO GetSubCategoryByReportTypeAndCategory(int reportType, int category)
         {
             try
             {
                 CommonHeaderBLL commonHeaderBLL = new CommonHeaderBLL();
-                return commonHeaderBLL.GetSubCategoryByReportTypeAndCategory(ReportType, category);
+                return commonHeaderBLL.GetSubCategoryByReportTypeAndCategory(reportType, category);
             }
             catch (Exception ex)
             {
-                return ex.StackTrace;
+                return null;
             }
         }
 
@@ -94,9 +122,8 @@ namespace NESReportsAPI.Controllers
         /// </summary>
         /// <param name="ReportType"></param>
         /// <returns></returns>
-        [HttpGet]
-        [Route("api/CommonHeader/GetReportCategory")]
-        public string GetReports()
+        [Route("reportcategory")]
+        public AVReportDTO GetReports()
         {
             try
             {
@@ -105,7 +132,7 @@ namespace NESReportsAPI.Controllers
             }
             catch (Exception ex)
             {
-                return ex.StackTrace;
+                return null;
             }
         }
     }

@@ -7,3 +7,11 @@ D:\Project Gouse\visualstudioApi\NESReportsAPI\NESReportsDTO\bin\Debug\NESReport
 D:\Project Gouse\visualstudioApi\NESReportsAPI\NESReportsDTO\bin\Debug\NESReportsDTO.pdb
 D:\Project Gouse\visualstudioApi\NESReportsAPI\NESReportsDTO\obj\Debug\NESReportsDTO.dll
 D:\Project Gouse\visualstudioApi\NESReportsAPI\NESReportsDTO\obj\Debug\NESReportsDTO.pdb
+C:\Users\Administrator\Desktop\Surya\GitHub\NESReportsAPI\NESReportsDTO\bin\Debug\NESReportsDTO.dll
+C:\Users\Administrator\Desktop\Surya\GitHub\NESReportsAPI\NESReportsDTO\bin\Debug\NESReportsDTO.pdb
+C:\Users\Administrator\Desktop\Surya\GitHub\NESReportsAPI\NESReportsDTO\obj\Debug\NESReportsDTO.dll
+C:\Users\Administrator\Desktop\Surya\GitHub\NESReportsAPI\NESReportsDTO\obj\Debug\NESReportsDTO.pdb
+D:\surya\NESReportsAPI\NESReportsDTO\bin\Debug\NESReportsDTO.dll
+D:\surya\NESReportsAPI\NESReportsDTO\bin\Debug\NESReportsDTO.pdb
+D:\surya\NESReportsAPI\NESReportsDTO\obj\Debug\NESReportsDTO.dll
+D:\surya\NESReportsAPI\NESReportsDTO\obj\Debug\NESReportsDTO.pdb

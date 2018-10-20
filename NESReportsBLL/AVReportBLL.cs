@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NESReportsDAL;
+using NESReportsDTO;
 namespace NESReportsBLL
 {
     public class AVReportBLL
@@ -11,15 +12,15 @@ namespace NESReportsBLL
         AVReportDAL avReportDAL = new AVReportDAL();
 
         /// <summary>
-        /// 
+        /// State Wise Usgae Summary 
         /// </summary>
         /// <param name="StateCodes"></param>
         /// <returns></returns>
-        public string GetUsageStateByStates(string StateCodes, string StartDate, string EndDate)
+        public AVReportDTO GetStateWiseUsageSummary(string StateCodes, string StartDate, string EndDate)
         {
             try
             {
-                return avReportDAL.GetUsageStateByStates(StateCodes, StartDate, EndDate);
+                return avReportDAL.GetStateWiseUsageSummary(StateCodes, StartDate, EndDate);
             }
             catch (Exception ex)
             {
@@ -30,15 +31,111 @@ namespace NESReportsBLL
         }
 
         /// <summary>
-        /// 
+        /// State Wise Usgae Detail 
         /// </summary>
         /// <param name="StateCodes"></param>
         /// <returns></returns>
-        public string GetUsageDistrictByStates(string StateCodes, string StartDate, string EndDate)
+        public AVReportDTO GetStateWiseUsageDetail(string StateCodes, string StartDate, string EndDate)
         {
             try
             {
-                return avReportDAL.GetUsageDistrictByStates(StateCodes,StartDate, EndDate);
+                return avReportDAL.GetStateWiseUsageDetail(StateCodes, StartDate, EndDate);
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return null;
+        }
+        
+        /// <summary>
+        /// District Wise Usgae Summary 
+        /// </summary>
+        /// <param name="StateCodes"></param>
+        /// <returns></returns>
+        public AVReportDTO GetDistrictWiseUsageSummary(string StateCodes, string StartDate, string EndDate)
+        {
+            try
+            {
+                return avReportDAL.GetDistrictWiseUsageSummary(StateCodes, StartDate, EndDate);
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// District Wise Usgae Detail 
+        /// </summary>
+        /// <param name="DistrictCode"></param>
+        /// <returns></returns>
+        public AVReportDTO GetDistrictWiseUsageDetail(string DistrictCode, string StartDate, string EndDate)
+        {
+            try
+            {
+                return avReportDAL.GetDistrictWiseUsageDetail(DistrictCode, StartDate, EndDate);
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return null;
+        }
+
+
+        /// <summary>
+        /// Branch Wise Usgae Summary 
+        /// </summary>
+        /// <param name="StateCodes"></param>
+        /// <returns></returns>
+        public AVReportDTO GetBranchWiseUsageSummary(string StateCodes, string DistrictCodes, string StartDate, string EndDate)
+        {
+            try
+            {
+                return avReportDAL.GetBranchWiseUsageSummary(StateCodes, DistrictCodes, StartDate, EndDate);
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return null;
+        }
+
+
+        /// <summary>
+        /// Brnach Wise Usgae Detail 
+        /// </summary>
+        /// <param name="DistrictCode"></param>
+        /// <returns></returns>
+        public AVReportDTO GetBranchWiseUsageDetail(string StateCodes, string DistrictCodes, string BranchCode, string StartDate, string EndDate)
+        {
+            try
+            {
+                return avReportDAL.GetBranchWiseUsageDetail(StateCodes, DistrictCodes, BranchCode, StartDate, EndDate);
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Class Wise Usgae Summary 
+        /// </summary>
+        /// <param name="StateCodes"></param>
+        /// <returns></returns>
+        public AVReportDTO GetClassWiseUsageSummary(string StateCodes, string DistrictCodes, string BranchCodes, string StartDate, string EndDate)
+        {
+            try
+            {
+                return avReportDAL.GetClassWiseUsageSummary(StateCodes, DistrictCodes, BranchCodes, StartDate, EndDate);
             }
             catch (Exception ex)
             {
@@ -53,26 +150,7 @@ namespace NESReportsBLL
         /// </summary>
         /// <param name="StateCodes"></param>
         /// <returns></returns>
-        public string GetUsageDistrictsByStatesandDistrict(string StateCodes, string DistrictCodes, string StartDate, string EndDate)
-        {
-            try
-            {
-                return avReportDAL.GetUsageDistrictsByStatesandDistrict(StateCodes, DistrictCodes, StartDate, EndDate);
-            }
-            catch (Exception ex)
-            {
-
-            }
-
-            return null;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="StateCodes"></param>
-        /// <returns></returns>
-        public string GetUsageBranchByStateandDistrict(string StateCodes, string DistrictCodes, string StartDate, string EndDate)
+        public AVReportDTO GetUsageBranchByStateandDistrict(string StateCodes, string DistrictCodes, string StartDate, string EndDate)
         {
             try
             {
@@ -93,7 +171,7 @@ namespace NESReportsBLL
         /// <param name="DistrictCodes"></param>
         /// <param name="BranchCodes"></param>
         /// <returns></returns>
-        public string GetUsageBranchByStateandDistrictandBranch(string StateCodes, string DistrictCodes, string BranchCodes, string StartDate, string EndDate)
+        public AVReportDTO GetUsageBranchByStateandDistrictandBranch(string StateCodes, string DistrictCodes, string BranchCodes, string StartDate, string EndDate)
         {
             return avReportDAL.GetUsageBranchByStateandDistrictandBranch(StateCodes, DistrictCodes, BranchCodes, StartDate, EndDate);
         }
@@ -105,7 +183,7 @@ namespace NESReportsBLL
         /// <param name="DistrictCodes"></param>
         /// <param name="BranchCodes"></param>
         /// <returns></returns>
-        public string GetClassByStateandDistrictandBranch(string StateCodes, string DistrictCodes, string BranchCodes, string StartDate, string EndDate)
+        public AVReportDTO GetClassByStateandDistrictandBranch(string StateCodes, string DistrictCodes, string BranchCodes, string StartDate, string EndDate)
         {
             return avReportDAL.GetClassByStateandDistrictandBranch(StateCodes, DistrictCodes, BranchCodes, StartDate, EndDate);
         }

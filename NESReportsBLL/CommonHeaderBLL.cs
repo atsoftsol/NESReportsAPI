@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NESReportsDAL;
+using NESReportsDTO;
 
 namespace NESReportsBLL
 {
@@ -15,34 +16,57 @@ namespace NESReportsBLL
         /// 
         /// </summary>
         /// <returns></returns>
-        public string GetStates()
+        public List<States> GetStates()
         {
             try
             {
-                return commonHeaderDAL.GetStates();
+                return commonHeaderDAL.GetStatesList();
             }
-            catch (Exception ex)
-            {
-
-            }
-
+            catch (Exception)
+            { 
+            } 
             return null;
         }
-
+  
         /// <summary>
         /// 
         /// </summary>
         /// <param name="stateID"></param>
         /// <returns></returns>
-        public string GetDistrict(int stateID)
+        public List<Districts> GetDistrict(string stateIds)
         {
             try
             {
-                return commonHeaderDAL.GetDistrict(stateID);
+                return commonHeaderDAL.GetDistrictList(stateIds);
             }
-            catch (Exception ex)
-            {
+            catch (Exception)
+            { 
+            }
 
+            return null;
+        }
+
+        public List<Branches> GetBranches(string districtIds)
+        {
+            try
+            {
+                return commonHeaderDAL.GetBranches(districtIds);
+            }
+            catch (Exception)
+            {
+            }
+
+            return null;
+        }
+
+        public List<Course> GetClasses()
+        {
+            try
+            {
+                return commonHeaderDAL.GetClasses();
+            }
+            catch (Exception)
+            {
             }
 
             return null;
@@ -53,7 +77,7 @@ namespace NESReportsBLL
         /// </summary>
         /// <param name="ReportType"></param>
         /// <returns></returns>
-        public string GetCategoryByReportId(int ReportType)
+        public AVReportDTO GetCategoryByReportId(int ReportType)
         {
             try
             {
@@ -73,7 +97,7 @@ namespace NESReportsBLL
         /// <param name="ReportType"></param>
         /// <param name="category"></param>
         /// <returns></returns>
-        public string GetSubCategoryByReportTypeAndCategory(int ReportType, int category)
+        public AVReportDTO GetSubCategoryByReportTypeAndCategory(int ReportType, int category)
         {
             try
             {
@@ -91,7 +115,7 @@ namespace NESReportsBLL
         /// 
         /// </summary>
         /// <returns></returns>
-        public string GetReports()
+        public AVReportDTO GetReports()
         {
             try
             {

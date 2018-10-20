@@ -22,3 +22,33 @@ D:\Project Gouse\visualstudioApi\NESReportsAPI\NESReportsDAL\bin\Debug\Newtonsof
 D:\Project Gouse\visualstudioApi\NESReportsAPI\NESReportsDAL\obj\Debug\NESReportsDAL.dll
 D:\Project Gouse\visualstudioApi\NESReportsAPI\NESReportsDAL\obj\Debug\NESReportsDAL.pdb
 D:\Project Gouse\visualstudioApi\NESReportsAPI\NESReportsDAL\obj\Debug\NESReportsDAL.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Desktop\Surya\GitHub\NESReportsAPI\NESReportsDAL\bin\Debug\NESReportsDAL.dll.config
+C:\Users\Administrator\Desktop\Surya\GitHub\NESReportsAPI\NESReportsDAL\bin\Debug\NESReportsDAL.dll
+C:\Users\Administrator\Desktop\Surya\GitHub\NESReportsAPI\NESReportsDAL\bin\Debug\NESReportsDAL.pdb
+C:\Users\Administrator\Desktop\Surya\GitHub\NESReportsAPI\NESReportsDAL\bin\Debug\Google.Protobuf.dll
+C:\Users\Administrator\Desktop\Surya\GitHub\NESReportsAPI\NESReportsDAL\bin\Debug\MySql.Data.dll
+C:\Users\Administrator\Desktop\Surya\GitHub\NESReportsAPI\NESReportsDAL\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Administrator\Desktop\Surya\GitHub\NESReportsAPI\NESReportsDAL\bin\Debug\Oracle.ManagedDataAccess.dll
+C:\Users\Administrator\Desktop\Surya\GitHub\NESReportsAPI\NESReportsDAL\bin\Debug\Google.Protobuf.xml
+C:\Users\Administrator\Desktop\Surya\GitHub\NESReportsAPI\NESReportsDAL\bin\Debug\MySql.Data.xml
+C:\Users\Administrator\Desktop\Surya\GitHub\NESReportsAPI\NESReportsDAL\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Administrator\Desktop\Surya\GitHub\NESReportsAPI\NESReportsDAL\obj\Debug\NESReportsDAL.dll
+C:\Users\Administrator\Desktop\Surya\GitHub\NESReportsAPI\NESReportsDAL\obj\Debug\NESReportsDAL.pdb
+C:\Users\Administrator\Desktop\Surya\GitHub\NESReportsAPI\NESReportsDAL\bin\Debug\NESReportsDTO.dll
+C:\Users\Administrator\Desktop\Surya\GitHub\NESReportsAPI\NESReportsDAL\bin\Debug\NESReportsDTO.pdb
+C:\Users\Administrator\Desktop\Surya\GitHub\NESReportsAPI\NESReportsDAL\obj\Debug\NESReportsDAL.csprojResolveAssemblyReference.cache
+D:\surya\NESReportsAPI\NESReportsDAL\bin\Debug\NESReportsDAL.dll.config
+D:\surya\NESReportsAPI\NESReportsDAL\bin\Debug\NESReportsDAL.dll
+D:\surya\NESReportsAPI\NESReportsDAL\bin\Debug\NESReportsDAL.pdb
+D:\surya\NESReportsAPI\NESReportsDAL\bin\Debug\Google.Protobuf.dll
+D:\surya\NESReportsAPI\NESReportsDAL\bin\Debug\MySql.Data.dll
+D:\surya\NESReportsAPI\NESReportsDAL\bin\Debug\NESReportsDTO.dll
+D:\surya\NESReportsAPI\NESReportsDAL\bin\Debug\Newtonsoft.Json.dll
+D:\surya\NESReportsAPI\NESReportsDAL\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\surya\NESReportsAPI\NESReportsDAL\bin\Debug\Google.Protobuf.xml
+D:\surya\NESReportsAPI\NESReportsDAL\bin\Debug\MySql.Data.xml
+D:\surya\NESReportsAPI\NESReportsDAL\bin\Debug\NESReportsDTO.pdb
+D:\surya\NESReportsAPI\NESReportsDAL\bin\Debug\Newtonsoft.Json.xml
+D:\surya\NESReportsAPI\NESReportsDAL\obj\Debug\NESReportsDAL.csprojResolveAssemblyReference.cache
+D:\surya\NESReportsAPI\NESReportsDAL\obj\Debug\NESReportsDAL.dll
+D:\surya\NESReportsAPI\NESReportsDAL\obj\Debug\NESReportsDAL.pdb

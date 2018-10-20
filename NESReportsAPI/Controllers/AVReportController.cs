@@ -5,167 +5,227 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using NESReportsBLL;
+using NESReportsDTO;
 
 namespace NESReportsAPI.Controllers
 {
+    [RoutePrefix("api/avreport")]
     public class AVReportController : ApiController
     {
+        AVReportBLL avReportBLL = new AVReportBLL();
+
+       
         /// <summary>
-        /// 
+        /// State Wise Usage Summary
         /// </summary>
-        /// <param name="branchCodes"></param>
-        /// <param name="districtCodes"></param>
         /// <param name="stateCodes"></param>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
         /// <returns></returns>
-        [HttpGet]
-        [Route("api/AVReport/GetBranchWiseUsageReport/{branchCodes}/{districtCodes}/{stateCodes}/{StartDate}/{EndDate}")]
-        public string GetBranchWiseUsageReport(string branchCodes, string districtCodes, string stateCodes, string StartDate, string EndDate)
+        [Route("statewiseusagesummary/{stateCodes}/{startDate}/{endDate}")]
+        public IHttpActionResult GetStateWiseUsageSummary(string stateCodes, string startDate, string endDate)
         {
-
-            try
+            if (stateCodes != string.Empty)
             {
-                AVReportBLL avReportBLL = new AVReportBLL();
+                AVReportDTO jsonData = avReportBLL.GetStateWiseUsageSummary(stateCodes, startDate, endDate);
 
-                if (stateCodes != string.Empty && districtCodes != string.Empty && branchCodes != string.Empty)
+                if (jsonData != null)
                 {
-                    return avReportBLL.GetUsageBranchByStateandDistrict(stateCodes, districtCodes, StartDate, EndDate);
-                }
-                else 
-                {
-                    return avReportBLL.GetUsageBranchByStateandDistrictandBranch(stateCodes, districtCodes, branchCodes, StartDate, EndDate);
-                }
-            }
-            catch (Exception ex)
-            {
-                return ex.StackTrace;
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="districtCodes"></param>
-        /// <param name="stateCodes"></param>
-        /// <returns></returns>
-        [HttpGet]
-        [Route("api/AVReport/GetDistrictWiseUsageReport/{districtCodes}/{stateCodes}/{StartDate}/{EndDate}")]
-        public string GetDistrictWiseUsageReport(string districtCodes, string stateCodes, string StartDate, string EndDate)
-        {
-
-            try
-            {
-                AVReportBLL avReportBLL = new AVReportBLL();
-
-                if (stateCodes != string.Empty && districtCodes != string.Empty)
-                {
-                    return avReportBLL.GetUsageDistrictsByStatesandDistrict(stateCodes, districtCodes, StartDate, EndDate);
+                    return Ok(avReportBLL.GetStateWiseUsageSummary(stateCodes, startDate, endDate));
                 }
                 else
                 {
-                    return string.Empty;// avReportBLL.GetUsageBranchByStateandDistrict(stateCodes, districtCodes);
+                    return InternalServerError();
                 }
             }
-            catch (Exception ex)
+            else
             {
-                return ex.StackTrace;
+                return BadRequest();
             }
         }
 
+       
         /// <summary>
-        /// 
+        /// State Wise Usgae Detail
         /// </summary>
         /// <param name="stateCodes"></param>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
         /// <returns></returns>
-        [HttpGet]
-        [Route("api/AVReport/GetStateWiseUsageReport/{stateCodes}/{StartDate}/{EndDate}")]
-        public string GetStateWiseUsageReport(string stateCodes, string StartDate, string EndDate)
+        [Route("statewiseusagedetails/{stateCode}/{startDate}/{endDate}")]
+        public IHttpActionResult GetStateWiseUsageDetail(string stateCode, string startDate, string endDate)
         {
-
-            try
+            if (stateCode != string.Empty)
             {
-                AVReportBLL avReportBLL = new AVReportBLL();
+                AVReportDTO jsonData = avReportBLL.GetStateWiseUsageDetail(stateCode, startDate, endDate);
 
-                if (stateCodes != string.Empty )
+                if (jsonData != null)
                 {
-                    return avReportBLL.GetUsageStateByStates(stateCodes, StartDate, EndDate);
+                    return Ok(avReportBLL.GetStateWiseUsageDetail(stateCode, startDate, endDate));
                 }
                 else
                 {
-                    return string.Empty;// avReportBLL.GetUsageBranchByStateandDistrict(stateCodes, districtCodes);
+                    return InternalServerError();
                 }
             }
-            catch (Exception ex)
+            else
             {
-                return ex.StackTrace;
+                return BadRequest();
             }
         }
 
         /// <summary>
-        /// 
+        /// District Wise Usage Summary
+        /// </summary>
+        /// <param name="stateCodes"></param>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
+        /// <returns></returns>
+        [Route("districtwiseusagesummary/{stateCodes}/{startDate}/{endDate}")]
+        public IHttpActionResult GetDistrictWiseUsageSummary(string stateCodes, string startDate, string endDate)
+        {
+            if (!string.IsNullOrEmpty(stateCodes))
+            {
+                AVReportDTO jsonData = avReportBLL.GetDistrictWiseUsageSummary(stateCodes, startDate, endDate);
+
+                if (jsonData != null)
+                {
+                    return Ok(avReportBLL.GetDistrictWiseUsageSummary(stateCodes, startDate, endDate));
+                }
+                else
+                {
+                    return InternalServerError();
+                }
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
+
+        /// <summary>
+        /// District Wise Usgae Detail
+        /// </summary>
+        /// <param name="districtCode"></param>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
+        /// <returns></returns>
+        [Route("districtwiseusagedetails/{districtCode}/{startDate}/{endDate}")]
+    
+        public IHttpActionResult GetDistrictWiseUsageDetail(string districtCode, string startDate, string endDate)
+        {
+            if (!string.IsNullOrEmpty(districtCode))
+            {
+                AVReportDTO jsonData = avReportBLL.GetDistrictWiseUsageDetail(districtCode, startDate, endDate);
+
+                if (jsonData != null)
+                {
+                    return Ok(avReportBLL.GetDistrictWiseUsageDetail(districtCode, startDate, endDate));
+                }
+                else
+                {
+                    return Ok();
+                }
+            }
+            else
+            {
+                return InternalServerError();
+            }
+        }
+
+
+        /// <summary>
+        /// Branch Wise Usage Summary
+        /// </summary>
+        /// <param name="stateCodes"></param>
+        /// <param name="districtCodes"></param>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
+        /// <returns></returns>
+        [Route("branchwiseusagesummary/{stateCodes}/{districtCodes}/{startDate}/{endDate}")]
+        public IHttpActionResult GetBranchWiseUsageSummary(string stateCodes, string districtCodes, string startDate, string endDate)
+        {
+            if (!string.IsNullOrEmpty(stateCodes) && !string.IsNullOrEmpty(districtCodes))
+            {
+                AVReportDTO jsonData = avReportBLL.GetBranchWiseUsageSummary(stateCodes, districtCodes, startDate, endDate);
+
+                if (jsonData != null)
+                {
+                    return Ok(avReportBLL.GetBranchWiseUsageSummary(stateCodes, districtCodes, startDate, endDate));
+                }
+                else
+                {
+                    return InternalServerError();
+                }
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
+
+        /// <summary>
+        /// Branch Wise Usage Detail
+        /// </summary>
+        /// <param name="stateCodes"></param>
+        /// <param name="districtCodes"></param>
+        /// <param name="branchCode"></param>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
+        /// <returns></returns>
+        [Route("branchwiseusagedetails/{stateCode}/{districtCode}/{branchCode}/{startDate}/{endDate}")]
+        public IHttpActionResult GetBranchWiseUsageDetail(string stateCode, string districtCode, string branchCode, string startDate, string endDate)
+        {
+            if (!string.IsNullOrEmpty(branchCode))
+            {
+                AVReportDTO jsonData = avReportBLL.GetBranchWiseUsageDetail(stateCode, districtCode, branchCode, startDate, endDate);
+
+                if (jsonData != null)
+                {
+                    return Ok(avReportBLL.GetBranchWiseUsageDetail(stateCode, districtCode, branchCode, startDate, endDate));
+                }
+                else
+                {
+                    return InternalServerError();
+                }
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
+
+        /// <summary>
+        /// Class Wise Usage Summary
         /// </summary>
         /// <param name="stateCodes"></param>
         /// <param name="districtCodes"></param>
         /// <param name="branchCodes"></param>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
         /// <returns></returns>
-        [HttpGet]
-        [Route("api/AVReport/GetUsageReport/{stateCodes}/{StartDate}/{EndDate}")]
-        public string GetUsageReport(string stateCodes, string districtCodes, string branchCodes, string StartDate, string EndDate)
+        [Route("classwiseusagesummary/{stateCodes}/{districtCodes}/{branchCodes}/{startDate}/{endDate}")]
+        public IHttpActionResult GetClassWiseUsageSummary(string stateCodes, string districtCodes, string branchCodes, string startDate, string endDate)
         {
-
-            try
+            if (!string.IsNullOrEmpty(stateCodes) && !string.IsNullOrEmpty(districtCodes) && !string.IsNullOrEmpty(branchCodes))
             {
-                AVReportBLL avReportBLL = new AVReportBLL();
+                AVReportDTO jsonData = avReportBLL.GetClassWiseUsageSummary(stateCodes, districtCodes, branchCodes, startDate, endDate);
 
-                if (stateCodes == "null" && districtCodes == "null" && branchCodes == "null")
+                if (jsonData != null)
                 {
-                    return avReportBLL.GetUsageStateByStates(stateCodes, StartDate, EndDate);
-                }
-                else if (stateCodes != "null" && districtCodes == "null" && branchCodes == "null")
-                {
-                    return avReportBLL.GetUsageStateByStates(stateCodes, StartDate, EndDate);
-                }
-                else if (stateCodes != "null" && districtCodes != "null" && branchCodes == "null")
-                {
-                    return avReportBLL.GetUsageDistrictsByStatesandDistrict(stateCodes, districtCodes, StartDate, EndDate);
-                }
-                else //IF(stateCode != "null" && DistrictCode != "null" && BranchCode != "null")
-                {
-                    return avReportBLL.GetUsageBranchByStateandDistrict(stateCodes, districtCodes, StartDate, EndDate);
-                }
-            }
-            catch (Exception ex)
-            {
-                return ex.StackTrace;
-            }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="stateCodes"></param>
-        /// <param name="districtCodes"></param>
-        /// <param name="branchCodes"></param>
-        /// <returns></returns>
-        [HttpGet]
-        [Route("api/AVReport/GetClassUsageReport/{classCodes}/{branchCodes}/{districtCodes}/{stateCodes}/{StartDate}/{EndDate}")]
-        public string GetClassUsageReport(string stateCodes, string districtCodes, string branchCodes, string classCodes, string StartDate, string EndDate)
-        {
-            try
-            {
-                AVReportBLL avReportBLL = new AVReportBLL();
-
-                if (stateCodes != string.Empty && districtCodes != string.Empty && branchCodes != string.Empty)
-                {
-                    return avReportBLL.GetClassByStateandDistrictandBranch(stateCodes, districtCodes, branchCodes, StartDate, EndDate);
+                    return Ok(avReportBLL.GetClassWiseUsageSummary(stateCodes, districtCodes, branchCodes, startDate, endDate));
                 }
                 else
                 {
-                    return avReportBLL.GetClassByStateandDistrictandBranch(stateCodes, districtCodes, branchCodes, StartDate, EndDate);
+                    return InternalServerError();
                 }
             }
-            catch (Exception ex)
+            else
             {
-                return ex.StackTrace;
+                return BadRequest();
             }
         }
 

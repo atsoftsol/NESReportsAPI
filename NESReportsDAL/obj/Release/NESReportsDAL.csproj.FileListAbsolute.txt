@@ -1,0 +1,15 @@
+D:\surya\NESReportsAPI\NESReportsDAL\bin\Release\NESReportsDAL.dll.config
+D:\surya\NESReportsAPI\NESReportsDAL\bin\Release\NESReportsDAL.dll
+D:\surya\NESReportsAPI\NESReportsDAL\bin\Release\NESReportsDAL.pdb
+D:\surya\NESReportsAPI\NESReportsDAL\bin\Release\Google.Protobuf.dll
+D:\surya\NESReportsAPI\NESReportsDAL\bin\Release\MySql.Data.dll
+D:\surya\NESReportsAPI\NESReportsDAL\bin\Release\NESReportsDTO.dll
+D:\surya\NESReportsAPI\NESReportsDAL\bin\Release\Newtonsoft.Json.dll
+D:\surya\NESReportsAPI\NESReportsDAL\bin\Release\Oracle.ManagedDataAccess.dll
+D:\surya\NESReportsAPI\NESReportsDAL\bin\Release\Google.Protobuf.xml
+D:\surya\NESReportsAPI\NESReportsDAL\bin\Release\MySql.Data.xml
+D:\surya\NESReportsAPI\NESReportsDAL\bin\Release\NESReportsDTO.pdb
+D:\surya\NESReportsAPI\NESReportsDAL\bin\Release\Newtonsoft.Json.xml
+D:\surya\NESReportsAPI\NESReportsDAL\obj\Release\NESReportsDAL.dll
+D:\surya\NESReportsAPI\NESReportsDAL\obj\Release\NESReportsDAL.pdb
+D:\surya\NESReportsAPI\NESReportsDAL\obj\Release\NESReportsDAL.csprojResolveAssemblyReference.cache

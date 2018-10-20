@@ -1,0 +1,4 @@
+D:\surya\NESReportsAPI\NESReportsDTO\bin\Release\NESReportsDTO.dll
+D:\surya\NESReportsAPI\NESReportsDTO\bin\Release\NESReportsDTO.pdb
+D:\surya\NESReportsAPI\NESReportsDTO\obj\Release\NESReportsDTO.dll
+D:\surya\NESReportsAPI\NESReportsDTO\obj\Release\NESReportsDTO.pdb
