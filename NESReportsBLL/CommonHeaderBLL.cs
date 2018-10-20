@@ -13,7 +13,7 @@ namespace NESReportsBLL
         CommonHeaderDAL commonHeaderDAL = new CommonHeaderDAL();
 
         /// <summary>
-        /// 
+        /// Get States
         /// </summary>
         /// <returns></returns>
         public List<States> GetStates()
@@ -23,13 +23,13 @@ namespace NESReportsBLL
                 return commonHeaderDAL.GetStatesList();
             }
             catch (Exception)
-            { 
+            {
+                throw;
             } 
-            return null;
         }
   
         /// <summary>
-        /// 
+        /// Get District
         /// </summary>
         /// <param name="stateID"></param>
         /// <returns></returns>
@@ -40,12 +40,16 @@ namespace NESReportsBLL
                 return commonHeaderDAL.GetDistrictList(stateIds);
             }
             catch (Exception)
-            { 
+            {
+                throw;
             }
-
-            return null;
         }
 
+        /// <summary>
+        /// Get Branches
+        /// </summary>
+        /// <param name="districtIds"></param>
+        /// <returns></returns>
         public List<Branches> GetBranches(string districtIds)
         {
             try
@@ -54,11 +58,14 @@ namespace NESReportsBLL
             }
             catch (Exception)
             {
+                throw;
             }
-
-            return null;
         }
 
+        /// <summary>
+        /// Get Classes
+        /// </summary>
+        /// <returns></returns>
         public List<Course> GetClasses()
         {
             try
@@ -67,13 +74,28 @@ namespace NESReportsBLL
             }
             catch (Exception)
             {
+                throw;
             }
-
-            return null;
         }
 
         /// <summary>
-        /// 
+        /// Get Subjects
+        /// </summary>
+        /// <returns></returns>
+        public List<Subject> GetSubjects()
+        {
+            try
+            {
+                return commonHeaderDAL.GetSubjects();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Get Category By ReportId
         /// </summary>
         /// <param name="ReportType"></param>
         /// <returns></returns>
@@ -83,16 +105,14 @@ namespace NESReportsBLL
             {
                 return commonHeaderDAL.GetCategoryByReportId(ReportType);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-
+                throw;
             }
-
-            return null;
         }
 
         /// <summary>
-        /// 
+        /// Get SubCategory By Report Type and CategoryId
         /// </summary>
         /// <param name="ReportType"></param>
         /// <param name="category"></param>
@@ -103,16 +123,14 @@ namespace NESReportsBLL
             {
                 return commonHeaderDAL.GetSubCategoryByReportTypeAndCategory(ReportType, category);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-
+                throw;
             }
-
-            return null;
         }
 
         /// <summary>
-        /// 
+        /// Get Reports
         /// </summary>
         /// <returns></returns>
         public AVReportDTO GetReports()
@@ -121,13 +139,10 @@ namespace NESReportsBLL
             {
                 return commonHeaderDAL.GetReports();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-
+                throw;
             }
-
-            return null;
         }
-
     }
 }

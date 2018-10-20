@@ -35,7 +35,7 @@ namespace NESReportsDAL
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
         }
 
@@ -62,7 +62,7 @@ namespace NESReportsDAL
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
         }
 
@@ -90,7 +90,7 @@ namespace NESReportsDAL
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
         }
 
@@ -113,7 +113,7 @@ namespace NESReportsDAL
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
         }
 
@@ -137,7 +137,7 @@ namespace NESReportsDAL
             }
             catch (Exception)
             {
-                return null;
+                throw;
             }
         }
 
@@ -147,22 +147,28 @@ namespace NESReportsDAL
         /// <returns></returns>
         public AVReportDTO GetStates()
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["OracleString"].ConnectionString;
-            using (OracleConnection con = new OracleConnection(connectionString))
+            try
             {
-                using (OracleCommand cmd = new OracleCommand("GET_STATES", con))
+                string connectionString = ConfigurationManager.ConnectionStrings["OracleString"].ConnectionString;
+                using (OracleConnection con = new OracleConnection(connectionString))
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("iCOUNTRYSLNO", OracleDbType.Int32).Value = 1;
-                    cmd.Parameters.Add("DATACUR", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
-
-                    using (OracleDataAdapter sda = new OracleDataAdapter(cmd))
+                    using (OracleCommand cmd = new OracleCommand("GET_STATES", con))
                     {
-                        return CommonDAL.OracleDataTableToJsonstring(cmd);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add("iCOUNTRYSLNO", OracleDbType.Int32).Value = 1;
+                        cmd.Parameters.Add("DATACUR", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
+
+                        using (OracleDataAdapter sda = new OracleDataAdapter(cmd))
+                        {
+                            return CommonDAL.OracleDataTableToJsonstring(cmd);
+                        }
                     }
                 }
             }
-
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         /// <summary>
@@ -172,20 +178,27 @@ namespace NESReportsDAL
         /// <returns></returns>
         public AVReportDTO GetDistrict(int stateCodes)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["OracleString"].ConnectionString;
-            using (OracleConnection con = new OracleConnection(connectionString))
+            try
             {
-                using (OracleCommand cmd = new OracleCommand("GET_DISTRICTS", con))
+                string connectionString = ConfigurationManager.ConnectionStrings["OracleString"].ConnectionString;
+                using (OracleConnection con = new OracleConnection(connectionString))
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("iSTATESLNO", OracleDbType.Int32).Value = stateCodes;
-                    cmd.Parameters.Add("DATACUR", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
-
-                    using (OracleDataAdapter sda = new OracleDataAdapter(cmd))
+                    using (OracleCommand cmd = new OracleCommand("GET_DISTRICTS", con))
                     {
-                        return CommonDAL.OracleDataTableToJsonstring(cmd);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add("iSTATESLNO", OracleDbType.Int32).Value = stateCodes;
+                        cmd.Parameters.Add("DATACUR", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
+
+                        using (OracleDataAdapter sda = new OracleDataAdapter(cmd))
+                        {
+                            return CommonDAL.OracleDataTableToJsonstring(cmd);
+                        }
                     }
                 }
+            }
+            catch (Exception)
+            {
+                throw;
             }
 
         }
@@ -197,22 +210,28 @@ namespace NESReportsDAL
         /// <returns></returns>
         public AVReportDTO GetCategoryByReportId(int reportType)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["OracleString"].ConnectionString;
-            using (OracleConnection con = new OracleConnection(connectionString))
+            try
             {
-                using (OracleCommand cmd = new OracleCommand("GET_INSPECTION_REPORT_CATEGORY", con))
+                string connectionString = ConfigurationManager.ConnectionStrings["OracleString"].ConnectionString;
+                using (OracleConnection con = new OracleConnection(connectionString))
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("iREPORTTYPESLNO", OracleDbType.Int32).Value = reportType;
-                    cmd.Parameters.Add("DATACUR", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
-
-                    using (OracleDataAdapter sda = new OracleDataAdapter(cmd))
+                    using (OracleCommand cmd = new OracleCommand("GET_INSPECTION_REPORT_CATEGORY", con))
                     {
-                        return CommonDAL.OracleDataTableToJsonstring(cmd);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add("iREPORTTYPESLNO", OracleDbType.Int32).Value = reportType;
+                        cmd.Parameters.Add("DATACUR", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
+
+                        using (OracleDataAdapter sda = new OracleDataAdapter(cmd))
+                        {
+                            return CommonDAL.OracleDataTableToJsonstring(cmd);
+                        }
                     }
                 }
             }
-
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         /// <summary>
@@ -248,21 +267,27 @@ namespace NESReportsDAL
         /// <returns></returns>
         public AVReportDTO GetReports()
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["OracleString"].ConnectionString;
-            using (OracleConnection con = new OracleConnection(connectionString))
+            try
             {
-                using (OracleCommand cmd = new OracleCommand("GET_REPORT_TYPES", con))
+                string connectionString = ConfigurationManager.ConnectionStrings["OracleString"].ConnectionString;
+                using (OracleConnection con = new OracleConnection(connectionString))
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("DATACUR", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
-
-                    using (OracleDataAdapter sda = new OracleDataAdapter(cmd))
+                    using (OracleCommand cmd = new OracleCommand("GET_REPORT_TYPES", con))
                     {
-                        return CommonDAL.OracleDataTableToJsonstring(cmd);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add("DATACUR", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
+
+                        using (OracleDataAdapter sda = new OracleDataAdapter(cmd))
+                        {
+                            return CommonDAL.OracleDataTableToJsonstring(cmd);
+                        }
                     }
                 }
             }
-
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }
