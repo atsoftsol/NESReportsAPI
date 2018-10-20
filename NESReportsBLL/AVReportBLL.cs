@@ -12,7 +12,7 @@ namespace NESReportsBLL
         AVReportDAL avReportDAL = new AVReportDAL();
 
         /// <summary>
-        /// State Wise Usgae Summary 
+        /// State Wise Usage Summary 
         /// </summary>
         /// <param name="StateCodes"></param>
         /// <returns></returns>
@@ -31,7 +31,7 @@ namespace NESReportsBLL
         }
 
         /// <summary>
-        /// State Wise Usgae Detail 
+        /// State Wise Usage Detail 
         /// </summary>
         /// <param name="StateCodes"></param>
         /// <returns></returns>
@@ -50,7 +50,7 @@ namespace NESReportsBLL
         }
         
         /// <summary>
-        /// District Wise Usgae Summary 
+        /// District Wise Usage Summary 
         /// </summary>
         /// <param name="StateCodes"></param>
         /// <returns></returns>
@@ -69,7 +69,7 @@ namespace NESReportsBLL
         }
 
         /// <summary>
-        /// District Wise Usgae Detail 
+        /// District Wise Usage Detail 
         /// </summary>
         /// <param name="DistrictCode"></param>
         /// <returns></returns>
@@ -86,9 +86,8 @@ namespace NESReportsBLL
             return null;
         }
 
-
         /// <summary>
-        /// Branch Wise Usgae Summary 
+        /// Branch Wise Usage Summary 
         /// </summary>
         /// <param name="StateCodes"></param>
         /// <returns></returns>
@@ -106,9 +105,8 @@ namespace NESReportsBLL
             return null;
         }
 
-
         /// <summary>
-        /// Brnach Wise Usgae Detail 
+        /// Branch Wise Usage Detail 
         /// </summary>
         /// <param name="DistrictCode"></param>
         /// <returns></returns>
@@ -127,7 +125,7 @@ namespace NESReportsBLL
         }
 
         /// <summary>
-        /// Class Wise Usgae Summary 
+        /// Class Wise Usage Summary 
         /// </summary>
         /// <param name="StateCodes"></param>
         /// <returns></returns>
@@ -146,7 +144,7 @@ namespace NESReportsBLL
         }
 
         /// <summary>
-        /// 
+        /// Branch Wise Usage By State and District
         /// </summary>
         /// <param name="StateCodes"></param>
         /// <returns></returns>
@@ -177,7 +175,7 @@ namespace NESReportsBLL
         }
 
         /// <summary>
-        /// 
+        /// Class Wise Usage By State and District and Branch
         /// </summary>
         /// <param name="StateCodes"></param>
         /// <param name="DistrictCodes"></param>
@@ -186,6 +184,37 @@ namespace NESReportsBLL
         public AVReportDTO GetClassByStateandDistrictandBranch(string StateCodes, string DistrictCodes, string BranchCodes, string StartDate, string EndDate)
         {
             return avReportDAL.GetClassByStateandDistrictandBranch(StateCodes, DistrictCodes, BranchCodes, StartDate, EndDate);
+        }
+
+        /// <summary>
+        /// Subject wise usage Summary
+        /// </summary>
+        /// <param name="StateCodes"></param>
+        /// <param name="DistrictCodes"></param>
+        /// <param name="BranchCodes"></param>
+        /// <param name="ClassCodes"></param>
+        /// <param name="StartDate"></param>
+        /// <param name="EndDate"></param>
+        /// <returns></returns>
+        public AVReportDTO GetSubjectWiseUsageSummary(string StateCodes, string DistrictCodes, string BranchCodes, string ClassCodes, string StartDate, string EndDate)
+        {
+            return avReportDAL.GetSubjectWiseUsageSummary(StateCodes, DistrictCodes, BranchCodes, ClassCodes, StartDate, EndDate);
+        }
+
+        /// <summary>
+        /// Subject Wise Usage Details
+        /// </summary>
+        /// <param name="StateCodes"></param>
+        /// <param name="DistrictCodes"></param>
+        /// <param name="BranchCodes"></param>
+        /// <param name="ClassCodes"></param>
+        /// <param name="SubjectCodes"></param>
+        /// <param name="StartDate"></param>
+        /// <param name="EndDate"></param>
+        /// <returns></returns>
+        public AVReportDTO GetSubjectWiseUsageDetail(string StateCodes, string DistrictCodes, string BranchCodes, string ClassCodes, string SubjectCodes, string StartDate, string EndDate)
+        {
+            return avReportDAL.GetSubjectWiseUsageDetail(StateCodes, DistrictCodes, BranchCodes, ClassCodes, SubjectCodes, StartDate, EndDate);
         }
     }
 }

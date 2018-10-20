@@ -45,8 +45,12 @@ namespace NESReportsDAL
 
             return null;
         }
-
-
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
         public static List<string> CollectColumns(DataTable dt)
         {
             List<string> columns = new List<string>();
@@ -57,8 +61,12 @@ namespace NESReportsDAL
             return columns;
         }
 
-
-        // function that creates a list of an object from the given data table
+        /// <summary>
+        /// function that creates a list of an object from the given data table
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="tbl"></param>
+        /// <returns></returns>
         public static List<T> CreateListFromTable<T>(DataTable tbl) where T : new()
         {
             // define return list
@@ -75,7 +83,12 @@ namespace NESReportsDAL
             return lst;
         }
 
-        // function that creates an object from the given data row
+        /// <summary>
+        ///  function that creates an object from the given data row
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="row"></param>
+        /// <returns></returns>
         public static T CreateItemFromRow<T>(DataRow row) where T : new()
         {
             // create a new object
@@ -88,6 +101,12 @@ namespace NESReportsDAL
             return item;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="item"></param>
+        /// <param name="row"></param>
         public static void SetItemFromRow<T>(T item, DataRow row) where T : new()
         {
             // go through each column
@@ -104,7 +123,12 @@ namespace NESReportsDAL
             }
         }
 
-        //call stored procedure to get data.
+        /// <summary>
+        /// call stored procedure to get data.
+        /// </summary>
+        /// <param name="SPName"></param>
+        /// <param name="SqlPrms"></param>
+        /// <returns></returns>
         public static DataSet GetRecordWithExtendedTimeOut(string SPName, params MySqlParameter[] SqlPrms)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["connstring"].ConnectionString;
@@ -129,7 +153,6 @@ namespace NESReportsDAL
 
             return ds;
         }
-         
 
         /// <summary>
         /// 

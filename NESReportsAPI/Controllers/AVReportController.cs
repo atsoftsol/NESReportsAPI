@@ -14,7 +14,6 @@ namespace NESReportsAPI.Controllers
     {
         AVReportBLL avReportBLL = new AVReportBLL();
 
-       
         /// <summary>
         /// State Wise Usage Summary
         /// </summary>
@@ -44,7 +43,6 @@ namespace NESReportsAPI.Controllers
             }
         }
 
-       
         /// <summary>
         /// State Wise Usgae Detail
         /// </summary>
@@ -103,7 +101,6 @@ namespace NESReportsAPI.Controllers
             }
         }
 
-
         /// <summary>
         /// District Wise Usgae Detail
         /// </summary>
@@ -112,7 +109,6 @@ namespace NESReportsAPI.Controllers
         /// <param name="endDate"></param>
         /// <returns></returns>
         [Route("districtwiseusagedetails/{districtCode}/{startDate}/{endDate}")]
-    
         public IHttpActionResult GetDistrictWiseUsageDetail(string districtCode, string startDate, string endDate)
         {
             if (!string.IsNullOrEmpty(districtCode))
@@ -133,7 +129,6 @@ namespace NESReportsAPI.Controllers
                 return InternalServerError();
             }
         }
-
 
         /// <summary>
         /// Branch Wise Usage Summary
@@ -164,7 +159,6 @@ namespace NESReportsAPI.Controllers
                 return BadRequest();
             }
         }
-
 
         /// <summary>
         /// Branch Wise Usage Detail
@@ -197,7 +191,6 @@ namespace NESReportsAPI.Controllers
             }
         }
 
-
         /// <summary>
         /// Class Wise Usage Summary
         /// </summary>
@@ -217,6 +210,70 @@ namespace NESReportsAPI.Controllers
                 if (jsonData != null)
                 {
                     return Ok(avReportBLL.GetClassWiseUsageSummary(stateCodes, districtCodes, branchCodes, startDate, endDate));
+                }
+                else
+                {
+                    return InternalServerError();
+                }
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
+        /// <summary>
+        /// Subject Wise Usage Summary
+        /// </summary>
+        /// <param name="stateCodes"></param>
+        /// <param name="districtCodes"></param>
+        /// <param name="branchCodes"></param>
+        /// <param name="classCodes"></param>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
+        /// <returns></returns>
+        [Route("subjectwiseusagesummary/{stateCodes}/{districtCodes}/{branchCodes}/{classCodes}/{startDate}/{endDate}")]
+        public IHttpActionResult GetSubjectWiseUsageSummary(string stateCodes, string districtCodes, string branchCodes, string classCodes, string startDate, string endDate)
+        {
+            if (!string.IsNullOrEmpty(stateCodes) && !string.IsNullOrEmpty(districtCodes) && !string.IsNullOrEmpty(branchCodes))
+            {
+                AVReportDTO jsonData = avReportBLL.GetSubjectWiseUsageSummary(stateCodes, districtCodes, branchCodes, classCodes, startDate, endDate);
+
+                if (jsonData != null)
+                {
+                    return Ok(avReportBLL.GetSubjectWiseUsageSummary(stateCodes, districtCodes, branchCodes, classCodes, startDate, endDate));
+                }
+                else
+                {
+                    return InternalServerError();
+                }
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
+
+        /// <summary>
+        /// Subject Wise Usage Details
+        /// </summary>
+        /// <param name="stateCodes"></param>
+        /// <param name="districtCodes"></param>
+        /// <param name="branchCodes"></param>
+        /// <param name="ClassCodes"></param>
+        /// <param name="startDate"></param>
+        /// <param name="endDate"></param>
+        /// <returns></returns>
+        [Route("subjectwiseusagedetails/{stateCodes}/{districtCodes}/{branchCodes}/{classCodes}/{subjectCode}/{startDate}/{endDate}")]
+        public IHttpActionResult GetSubjectWiseUsageDetail(string stateCodes, string districtCodes, string branchCodes, string classCodes, string subjectCode, string startDate, string endDate)
+        {
+            if (!string.IsNullOrEmpty(stateCodes) && !string.IsNullOrEmpty(districtCodes) && !string.IsNullOrEmpty(branchCodes))
+            {
+                AVReportDTO jsonData = avReportBLL.GetSubjectWiseUsageDetail(stateCodes, districtCodes, branchCodes, classCodes, subjectCode, startDate, endDate);
+
+                if (jsonData != null)
+                {
+                    return Ok(avReportBLL.GetSubjectWiseUsageDetail(stateCodes, districtCodes, branchCodes, classCodes, subjectCode, startDate, endDate));
                 }
                 else
                 {
