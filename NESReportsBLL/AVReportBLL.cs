@@ -22,12 +22,11 @@ namespace NESReportsBLL
             {
                 return avReportDAL.GetStateWiseUsageSummary(StateCodes, StartDate, EndDate);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-              
+                throw;
             }
 
-            return null;
         }
 
         /// <summary>
@@ -41,14 +40,13 @@ namespace NESReportsBLL
             {
                 return avReportDAL.GetStateWiseUsageDetail(StateCodes, StartDate, EndDate);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-
+                throw;
             }
 
-            return null;
         }
-        
+
         /// <summary>
         /// District Wise Usage Summary 
         /// </summary>
@@ -60,12 +58,11 @@ namespace NESReportsBLL
             {
                 return avReportDAL.GetDistrictWiseUsageSummary(StateCodes, StartDate, EndDate);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-
+                throw;
             }
 
-            return null;
         }
 
         /// <summary>
@@ -79,11 +76,10 @@ namespace NESReportsBLL
             {
                 return avReportDAL.GetDistrictWiseUsageDetail(DistrictCode, StartDate, EndDate);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-
+                throw;
             }
-            return null;
         }
 
         /// <summary>
@@ -97,12 +93,10 @@ namespace NESReportsBLL
             {
                 return avReportDAL.GetBranchWiseUsageSummary(StateCodes, DistrictCodes, StartDate, EndDate);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-
+                throw;
             }
-
-            return null;
         }
 
         /// <summary>
@@ -116,12 +110,10 @@ namespace NESReportsBLL
             {
                 return avReportDAL.GetBranchWiseUsageDetail(StateCodes, DistrictCodes, BranchCode, StartDate, EndDate);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-
+                throw;
             }
-
-            return null;
         }
 
         /// <summary>
@@ -135,12 +127,10 @@ namespace NESReportsBLL
             {
                 return avReportDAL.GetClassWiseUsageSummary(StateCodes, DistrictCodes, BranchCodes, StartDate, EndDate);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-
+                throw;
             }
-
-            return null;
         }
 
         /// <summary>
@@ -154,12 +144,10 @@ namespace NESReportsBLL
             {
                 return avReportDAL.GetUsageBranchByStateandDistrict(StateCodes, DistrictCodes, StartDate, EndDate);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-
+                throw;
             }
-
-            return null;
         }
 
         /// <summary>
@@ -171,7 +159,14 @@ namespace NESReportsBLL
         /// <returns></returns>
         public AVReportDTO GetUsageBranchByStateandDistrictandBranch(string StateCodes, string DistrictCodes, string BranchCodes, string StartDate, string EndDate)
         {
-            return avReportDAL.GetUsageBranchByStateandDistrictandBranch(StateCodes, DistrictCodes, BranchCodes, StartDate, EndDate);
+            try
+            {
+                return avReportDAL.GetUsageBranchByStateandDistrictandBranch(StateCodes, DistrictCodes, BranchCodes, StartDate, EndDate);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         /// <summary>
@@ -183,7 +178,14 @@ namespace NESReportsBLL
         /// <returns></returns>
         public AVReportDTO GetClassByStateandDistrictandBranch(string StateCodes, string DistrictCodes, string BranchCodes, string StartDate, string EndDate)
         {
-            return avReportDAL.GetClassByStateandDistrictandBranch(StateCodes, DistrictCodes, BranchCodes, StartDate, EndDate);
+            try
+            {
+                return avReportDAL.GetClassByStateandDistrictandBranch(StateCodes, DistrictCodes, BranchCodes, StartDate, EndDate);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         /// <summary>
@@ -198,7 +200,14 @@ namespace NESReportsBLL
         /// <returns></returns>
         public AVReportDTO GetSubjectWiseUsageSummary(string StateCodes, string DistrictCodes, string BranchCodes, string ClassCodes, string StartDate, string EndDate)
         {
-            return avReportDAL.GetSubjectWiseUsageSummary(StateCodes, DistrictCodes, BranchCodes, ClassCodes, StartDate, EndDate);
+            try
+            {
+                return avReportDAL.GetSubjectWiseUsageSummary(StateCodes, DistrictCodes, BranchCodes, ClassCodes, StartDate, EndDate);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         /// <summary>
@@ -214,7 +223,14 @@ namespace NESReportsBLL
         /// <returns></returns>
         public AVReportDTO GetSubjectWiseUsageDetail(string StateCodes, string DistrictCodes, string BranchCodes, string ClassCodes, string SubjectCodes, string StartDate, string EndDate)
         {
-            return avReportDAL.GetSubjectWiseUsageDetail(StateCodes, DistrictCodes, BranchCodes, ClassCodes, SubjectCodes, StartDate, EndDate);
+            try
+            {
+                return avReportDAL.GetSubjectWiseUsageDetail(StateCodes, DistrictCodes, BranchCodes, ClassCodes, SubjectCodes, StartDate, EndDate);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

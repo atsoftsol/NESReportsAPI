@@ -23,29 +23,35 @@ namespace NESReportsDAL
         /// <returns></returns>
         public static AVReportDTO DataTableToJsonstring(MySqlCommand cmd)
         {
-            AVReportDTO avReport = new AVReportDTO();
-            using (MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter(cmd))
+            try
             {
-                DataTable dt = new DataTable();
-                sqlDataAdapter.Fill(dt);
-
-                if (dt != null && dt.Rows.Count > 0)
+                AVReportDTO avReport = new AVReportDTO();
+                using (MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter(cmd))
                 {
-                    avReport.columns = CollectColumns(dt);
-                    avReport.data = JsonConvert.SerializeObject(dt);
-                    avReport.sorting = "Per(%)";
-                    List<string> strList = new List<string>();
-                    strList.Add("Duration");
-                    strList.Add("Per(%)");
-                    strList.Add("Strength"); 
-                    avReport.footerTotalColumns = strList;
+                    DataTable dt = new DataTable();
+                    sqlDataAdapter.Fill(dt);
+
+                    if (dt != null && dt.Rows.Count > 0)
+                    {
+                        avReport.columns = CollectColumns(dt);
+                        avReport.data = JsonConvert.SerializeObject(dt);
+                        avReport.sorting = "Per(%)";
+                        List<string> strList = new List<string>();
+                        strList.Add("Duration");
+                        strList.Add("Per(%)");
+                        strList.Add("Strength");
+                        avReport.footerTotalColumns = strList;
+                    }
+
                     return avReport;
                 }
             }
-
-            return null;
+            catch (Exception)
+            {
+                throw;
+            }
         }
-        
+
         /// <summary>
         /// 
         /// </summary>
@@ -53,12 +59,19 @@ namespace NESReportsDAL
         /// <returns></returns>
         public static List<string> CollectColumns(DataTable dt)
         {
-            List<string> columns = new List<string>();
-            foreach (DataColumn column in dt.Columns)
+            try
             {
-                columns.Add(column.ColumnName);
+                List<string> columns = new List<string>();
+                foreach (DataColumn column in dt.Columns)
+                {
+                    columns.Add(column.ColumnName);
+                }
+                return columns;
             }
-            return columns;
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         /// <summary>
@@ -69,18 +82,25 @@ namespace NESReportsDAL
         /// <returns></returns>
         public static List<T> CreateListFromTable<T>(DataTable tbl) where T : new()
         {
-            // define return list
-            List<T> lst = new List<T>();
-
-            // go through each row
-            foreach (DataRow r in tbl.Rows)
+            try
             {
-                // add to the list
-                lst.Add(CreateItemFromRow<T>(r));
-            }
+                // define return list
+                List<T> lst = new List<T>();
 
-            // return the list
-            return lst;
+                // go through each row
+                foreach (DataRow r in tbl.Rows)
+                {
+                    // add to the list
+                    lst.Add(CreateItemFromRow<T>(r));
+                }
+
+                // return the list
+                return lst;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         /// <summary>
@@ -91,14 +111,21 @@ namespace NESReportsDAL
         /// <returns></returns>
         public static T CreateItemFromRow<T>(DataRow row) where T : new()
         {
-            // create a new object
-            T item = new T();
+            try
+            {
+                // create a new object
+                T item = new T();
 
-            // set the item
-            SetItemFromRow(item, row);
+                // set the item
+                SetItemFromRow(item, row);
 
-            // return 
-            return item;
+                // return 
+                return item;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         /// <summary>
@@ -109,17 +136,24 @@ namespace NESReportsDAL
         /// <param name="row"></param>
         public static void SetItemFromRow<T>(T item, DataRow row) where T : new()
         {
-            // go through each column
-            foreach (DataColumn c in row.Table.Columns)
+            try
             {
-                // find the property for the column
-                PropertyInfo p = item.GetType().GetProperty(c.ColumnName);
-
-                // if exists, set the value
-                if (p != null && row[c] != DBNull.Value)
+                // go through each column
+                foreach (DataColumn c in row.Table.Columns)
                 {
-                    p.SetValue(item, row[c], null);
+                    // find the property for the column
+                    PropertyInfo p = item.GetType().GetProperty(c.ColumnName);
+
+                    // if exists, set the value
+                    if (p != null && row[c] != DBNull.Value)
+                    {
+                        p.SetValue(item, row[c], null);
+                    }
                 }
+            }
+            catch (Exception)
+            {
+                throw;
             }
         }
 
@@ -131,27 +165,25 @@ namespace NESReportsDAL
         /// <returns></returns>
         public static DataSet GetRecordWithExtendedTimeOut(string SPName, params MySqlParameter[] SqlPrms)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["connstring"].ConnectionString;
-            DataSet ds = new DataSet();
-            MySqlCommand cmd = new MySqlCommand();
-            MySqlDataAdapter da = new MySqlDataAdapter();
-            MySqlConnection con = new MySqlConnection(connectionString);
-
             try
             {
+                string connectionString = ConfigurationManager.ConnectionStrings["connstring"].ConnectionString;
+                DataSet ds = new DataSet();
+                MySqlCommand cmd = new MySqlCommand();
+                MySqlDataAdapter da = new MySqlDataAdapter();
+                MySqlConnection con = new MySqlConnection(connectionString);
                 cmd = new MySqlCommand(SPName, con);
                 cmd.Parameters.AddRange(SqlPrms);
                 cmd.CommandTimeout = 240;
                 cmd.CommandType = CommandType.StoredProcedure;
                 da.SelectCommand = cmd;
                 da.Fill(ds);
+                return ds;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                return null;
+                throw;
             }
-
-            return ds;
         }
 
         /// <summary>
@@ -161,22 +193,29 @@ namespace NESReportsDAL
         /// <returns></returns>
         public static AVReportDTO OracleDataTableToJsonstring(OracleCommand cmd)
         {
-            AVReportDTO avReport = new AVReportDTO();
-            using (OracleDataAdapter sqlDataAdapter = new OracleDataAdapter(cmd))
+            try
             {
-                DataTable dt = new DataTable();
-                sqlDataAdapter.Fill(dt);
-
-                if (dt != null && dt.Rows.Count > 0)
+                AVReportDTO avReport = new AVReportDTO();
+                using (OracleDataAdapter sqlDataAdapter = new OracleDataAdapter(cmd))
                 {
-                    avReport.columns = CollectColumns(dt);
-                    avReport.data = JsonConvert.SerializeObject(dt);
-                    return avReport;
+                    DataTable dt = new DataTable();
+                    sqlDataAdapter.Fill(dt);
 
+                    if (dt != null && dt.Rows.Count > 0)
+                    {
+                        avReport.columns = CollectColumns(dt);
+                        avReport.data = JsonConvert.SerializeObject(dt);
+                    }
                 }
+                return avReport;
+            }
+            catch (Exception)
+            {
+                throw;
             }
 
-            return null;
+
+
         }
 
         /// <summary>
@@ -186,12 +225,19 @@ namespace NESReportsDAL
         /// <returns></returns>
         public static string AddingDoubleCodes(string CodeSeparter)
         {
-            StringBuilder Codestring = new StringBuilder();
-            foreach (string code in CodeSeparter.Split(','))
+            try
             {
-                Codestring.Append("\"" + code + "\"" + ",");
+                StringBuilder Codestring = new StringBuilder();
+                foreach (string code in CodeSeparter.Split(','))
+                {
+                    Codestring.Append("\"" + code + "\"" + ",");
+                }
+                return Codestring.ToString().TrimEnd(',');
             }
-            return Codestring.ToString().TrimEnd(',');
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
     }

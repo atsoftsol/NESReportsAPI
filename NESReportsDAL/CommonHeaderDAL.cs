@@ -13,8 +13,6 @@ namespace NESReportsDAL
 {
     public class CommonHeaderDAL
     {
-
-
         /// <summary>
         /// get States List
         /// </summary>
@@ -35,12 +33,17 @@ namespace NESReportsDAL
                 }
                 return model;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="stateIds"></param>
+        /// <returns></returns>
         public List<Districts> GetDistrictList(string stateIds)
         {
             try
@@ -57,12 +60,17 @@ namespace NESReportsDAL
                 }
                 return model;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="districtIds"></param>
+        /// <returns></returns>
         public List<Branches> GetBranches(string districtIds)
         {
             try
@@ -80,12 +88,16 @@ namespace NESReportsDAL
                 }
                 return model;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }
         }
 
+        /// <summary>
+        /// Get Classes
+        /// </summary>
+        /// <returns></returns>
         public List<Course> GetClasses()
         {
             try
@@ -99,17 +111,38 @@ namespace NESReportsDAL
                 }
                 return model;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return null;
             }
         }
 
+        /// <summary>
+        /// Get Subjects
+        /// </summary>
+        /// <returns></returns>
+        public List<Subject> GetSubjects()
+        {
+            try
+            {
+                DataSet dsSubjects = CommonDAL.GetRecordWithExtendedTimeOut("GET_SUBJECTS");
+                List<Subject> model = new List<Subject>();
 
-
+                if (dsSubjects != null)
+                {
+                    //Pass datatable from dataset to our DAL Method.
+                    model = CommonDAL.CreateListFromTable<Subject>(dsSubjects.Tables[0]);
+                }
+                return model;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
 
         /// <summary>
-        /// 
+        /// Get States
         /// </summary>
         /// <returns></returns>
         public AVReportDTO GetStates()
@@ -133,7 +166,7 @@ namespace NESReportsDAL
         }
 
         /// <summary>
-        /// 
+        /// Get Districts
         /// </summary>
         /// <param name="stateCodes"></param>
         /// <returns></returns>
@@ -158,7 +191,7 @@ namespace NESReportsDAL
         }
 
         /// <summary>
-        /// 
+        /// Get Category By Report ID
         /// </summary>
         /// <param name="StateCodes"></param>
         /// <returns></returns>
@@ -183,7 +216,7 @@ namespace NESReportsDAL
         }
 
         /// <summary>
-        /// 
+        /// Get Sub Category By Report Type and Category
         /// </summary>
         /// <param name="StateCodes"></param>
         /// <returns></returns>
@@ -209,7 +242,7 @@ namespace NESReportsDAL
         }
 
         /// <summary>
-        /// 
+        /// Get Reports
         /// </summary>
         /// <param name="StateCodes"></param>
         /// <returns></returns>

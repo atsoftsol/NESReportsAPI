@@ -24,22 +24,29 @@ namespace NESReportsAPI.Controllers
         [Route("statewiseusagesummary/{stateCodes}/{startDate}/{endDate}")]
         public IHttpActionResult GetStateWiseUsageSummary(string stateCodes, string startDate, string endDate)
         {
-            if (stateCodes != string.Empty)
+            try
             {
-                AVReportDTO jsonData = avReportBLL.GetStateWiseUsageSummary(stateCodes, startDate, endDate);
-
-                if (jsonData != null)
+                if (stateCodes != string.Empty)
                 {
-                    return Ok(avReportBLL.GetStateWiseUsageSummary(stateCodes, startDate, endDate));
+                    AVReportDTO jsonData = avReportBLL.GetStateWiseUsageSummary(stateCodes, startDate, endDate);
+
+                    if (jsonData != null)
+                    {
+                        return Ok(avReportBLL.GetStateWiseUsageSummary(stateCodes, startDate, endDate));
+                    }
+                    else
+                    {
+                        return Ok();
+                    }
                 }
                 else
                 {
-                    return InternalServerError();
+                    return BadRequest();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                return BadRequest();
+                return InternalServerError(ex);
             }
         }
 
@@ -53,22 +60,29 @@ namespace NESReportsAPI.Controllers
         [Route("statewiseusagedetails/{stateCode}/{startDate}/{endDate}")]
         public IHttpActionResult GetStateWiseUsageDetail(string stateCode, string startDate, string endDate)
         {
-            if (stateCode != string.Empty)
+            try
             {
-                AVReportDTO jsonData = avReportBLL.GetStateWiseUsageDetail(stateCode, startDate, endDate);
-
-                if (jsonData != null)
+                if (stateCode != string.Empty)
                 {
-                    return Ok(avReportBLL.GetStateWiseUsageDetail(stateCode, startDate, endDate));
+                    AVReportDTO jsonData = avReportBLL.GetStateWiseUsageDetail(stateCode, startDate, endDate);
+
+                    if (jsonData != null)
+                    {
+                        return Ok(avReportBLL.GetStateWiseUsageDetail(stateCode, startDate, endDate));
+                    }
+                    else
+                    {
+                        return Ok();
+                    }
                 }
                 else
                 {
-                    return InternalServerError();
+                    return BadRequest();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                return BadRequest();
+                return InternalServerError(ex);
             }
         }
 
@@ -82,22 +96,29 @@ namespace NESReportsAPI.Controllers
         [Route("districtwiseusagesummary/{stateCodes}/{startDate}/{endDate}")]
         public IHttpActionResult GetDistrictWiseUsageSummary(string stateCodes, string startDate, string endDate)
         {
-            if (!string.IsNullOrEmpty(stateCodes))
+            try
             {
-                AVReportDTO jsonData = avReportBLL.GetDistrictWiseUsageSummary(stateCodes, startDate, endDate);
-
-                if (jsonData != null)
+                if (!string.IsNullOrEmpty(stateCodes))
                 {
-                    return Ok(avReportBLL.GetDistrictWiseUsageSummary(stateCodes, startDate, endDate));
+                    AVReportDTO jsonData = avReportBLL.GetDistrictWiseUsageSummary(stateCodes, startDate, endDate);
+
+                    if (jsonData != null)
+                    {
+                        return Ok(avReportBLL.GetDistrictWiseUsageSummary(stateCodes, startDate, endDate));
+                    }
+                    else
+                    {
+                        return Ok();
+                    }
                 }
                 else
                 {
-                    return InternalServerError();
+                    return BadRequest();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                return BadRequest();
+                return InternalServerError(ex);
             }
         }
 
@@ -111,23 +132,31 @@ namespace NESReportsAPI.Controllers
         [Route("districtwiseusagedetails/{districtCode}/{startDate}/{endDate}")]
         public IHttpActionResult GetDistrictWiseUsageDetail(string districtCode, string startDate, string endDate)
         {
-            if (!string.IsNullOrEmpty(districtCode))
+            try
             {
-                AVReportDTO jsonData = avReportBLL.GetDistrictWiseUsageDetail(districtCode, startDate, endDate);
-
-                if (jsonData != null)
+                if (!string.IsNullOrEmpty(districtCode))
                 {
-                    return Ok(avReportBLL.GetDistrictWiseUsageDetail(districtCode, startDate, endDate));
+                    AVReportDTO jsonData = avReportBLL.GetDistrictWiseUsageDetail(districtCode, startDate, endDate);
+
+                    if (jsonData != null)
+                    {
+                        return Ok(avReportBLL.GetDistrictWiseUsageDetail(districtCode, startDate, endDate));
+                    }
+                    else
+                    {
+                        return Ok();
+                    }
                 }
                 else
                 {
-                    return Ok();
+                    return InternalServerError();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                return InternalServerError();
+               return InternalServerError(ex);
             }
+           
         }
 
         /// <summary>
@@ -141,23 +170,32 @@ namespace NESReportsAPI.Controllers
         [Route("branchwiseusagesummary/{stateCodes}/{districtCodes}/{startDate}/{endDate}")]
         public IHttpActionResult GetBranchWiseUsageSummary(string stateCodes, string districtCodes, string startDate, string endDate)
         {
-            if (!string.IsNullOrEmpty(stateCodes) && !string.IsNullOrEmpty(districtCodes))
+            try
             {
-                AVReportDTO jsonData = avReportBLL.GetBranchWiseUsageSummary(stateCodes, districtCodes, startDate, endDate);
-
-                if (jsonData != null)
+                if (!string.IsNullOrEmpty(stateCodes) && !string.IsNullOrEmpty(districtCodes))
                 {
-                    return Ok(avReportBLL.GetBranchWiseUsageSummary(stateCodes, districtCodes, startDate, endDate));
+                    AVReportDTO jsonData = avReportBLL.GetBranchWiseUsageSummary(stateCodes, districtCodes, startDate, endDate);
+
+                    if (jsonData != null)
+                    {
+                        return Ok(avReportBLL.GetBranchWiseUsageSummary(stateCodes, districtCodes, startDate, endDate));
+                    }
+                    else
+                    {
+                        return Ok();
+                    }
                 }
                 else
                 {
-                    return InternalServerError();
+                    return BadRequest();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                return BadRequest();
+                return InternalServerError(ex);
             }
+
+         
         }
 
         /// <summary>
@@ -172,22 +210,29 @@ namespace NESReportsAPI.Controllers
         [Route("branchwiseusagedetails/{stateCode}/{districtCode}/{branchCode}/{startDate}/{endDate}")]
         public IHttpActionResult GetBranchWiseUsageDetail(string stateCode, string districtCode, string branchCode, string startDate, string endDate)
         {
-            if (!string.IsNullOrEmpty(branchCode))
+            try
             {
-                AVReportDTO jsonData = avReportBLL.GetBranchWiseUsageDetail(stateCode, districtCode, branchCode, startDate, endDate);
-
-                if (jsonData != null)
+                if (!string.IsNullOrEmpty(branchCode))
                 {
-                    return Ok(avReportBLL.GetBranchWiseUsageDetail(stateCode, districtCode, branchCode, startDate, endDate));
+                    AVReportDTO jsonData = avReportBLL.GetBranchWiseUsageDetail(stateCode, districtCode, branchCode, startDate, endDate);
+
+                    if (jsonData != null)
+                    {
+                        return Ok(avReportBLL.GetBranchWiseUsageDetail(stateCode, districtCode, branchCode, startDate, endDate));
+                    }
+                    else
+                    {
+                        return Ok();
+                    }
                 }
                 else
                 {
-                    return InternalServerError();
+                    return BadRequest();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                return BadRequest();
+                return InternalServerError(ex);
             }
         }
 
@@ -203,22 +248,29 @@ namespace NESReportsAPI.Controllers
         [Route("classwiseusagesummary/{stateCodes}/{districtCodes}/{branchCodes}/{startDate}/{endDate}")]
         public IHttpActionResult GetClassWiseUsageSummary(string stateCodes, string districtCodes, string branchCodes, string startDate, string endDate)
         {
-            if (!string.IsNullOrEmpty(stateCodes) && !string.IsNullOrEmpty(districtCodes) && !string.IsNullOrEmpty(branchCodes))
+            try
             {
-                AVReportDTO jsonData = avReportBLL.GetClassWiseUsageSummary(stateCodes, districtCodes, branchCodes, startDate, endDate);
-
-                if (jsonData != null)
+                if (!string.IsNullOrEmpty(stateCodes) && !string.IsNullOrEmpty(districtCodes) && !string.IsNullOrEmpty(branchCodes))
                 {
-                    return Ok(avReportBLL.GetClassWiseUsageSummary(stateCodes, districtCodes, branchCodes, startDate, endDate));
+                    AVReportDTO jsonData = avReportBLL.GetClassWiseUsageSummary(stateCodes, districtCodes, branchCodes, startDate, endDate);
+
+                    if (jsonData != null)
+                    {
+                        return Ok(avReportBLL.GetClassWiseUsageSummary(stateCodes, districtCodes, branchCodes, startDate, endDate));
+                    }
+                    else
+                    {
+                        return Ok();
+                    }
                 }
                 else
                 {
-                    return InternalServerError();
+                    return BadRequest();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                return BadRequest();
+                return InternalServerError(ex);
             }
         }
 
@@ -235,22 +287,29 @@ namespace NESReportsAPI.Controllers
         [Route("subjectwiseusagesummary/{stateCodes}/{districtCodes}/{branchCodes}/{classCodes}/{startDate}/{endDate}")]
         public IHttpActionResult GetSubjectWiseUsageSummary(string stateCodes, string districtCodes, string branchCodes, string classCodes, string startDate, string endDate)
         {
-            if (!string.IsNullOrEmpty(stateCodes) && !string.IsNullOrEmpty(districtCodes) && !string.IsNullOrEmpty(branchCodes))
+            try
             {
-                AVReportDTO jsonData = avReportBLL.GetSubjectWiseUsageSummary(stateCodes, districtCodes, branchCodes, classCodes, startDate, endDate);
-
-                if (jsonData != null)
+                if (!string.IsNullOrEmpty(stateCodes) && !string.IsNullOrEmpty(districtCodes) && !string.IsNullOrEmpty(branchCodes))
                 {
-                    return Ok(avReportBLL.GetSubjectWiseUsageSummary(stateCodes, districtCodes, branchCodes, classCodes, startDate, endDate));
+                    AVReportDTO jsonData = avReportBLL.GetSubjectWiseUsageSummary(stateCodes, districtCodes, branchCodes, classCodes, startDate, endDate);
+
+                    if (jsonData != null)
+                    {
+                        return Ok(avReportBLL.GetSubjectWiseUsageSummary(stateCodes, districtCodes, branchCodes, classCodes, startDate, endDate));
+                    }
+                    else
+                    {
+                        return Ok();
+                    }
                 }
                 else
                 {
-                    return InternalServerError();
+                    return BadRequest();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                return BadRequest();
+                return InternalServerError(ex);
             }
         }
 
@@ -267,23 +326,31 @@ namespace NESReportsAPI.Controllers
         [Route("subjectwiseusagedetails/{stateCodes}/{districtCodes}/{branchCodes}/{classCodes}/{subjectCode}/{startDate}/{endDate}")]
         public IHttpActionResult GetSubjectWiseUsageDetail(string stateCodes, string districtCodes, string branchCodes, string classCodes, string subjectCode, string startDate, string endDate)
         {
-            if (!string.IsNullOrEmpty(stateCodes) && !string.IsNullOrEmpty(districtCodes) && !string.IsNullOrEmpty(branchCodes))
+            try
             {
-                AVReportDTO jsonData = avReportBLL.GetSubjectWiseUsageDetail(stateCodes, districtCodes, branchCodes, classCodes, subjectCode, startDate, endDate);
-
-                if (jsonData != null)
+                if (!string.IsNullOrEmpty(stateCodes) && !string.IsNullOrEmpty(districtCodes) && !string.IsNullOrEmpty(branchCodes))
                 {
-                    return Ok(avReportBLL.GetSubjectWiseUsageDetail(stateCodes, districtCodes, branchCodes, classCodes, subjectCode, startDate, endDate));
+                    AVReportDTO jsonData = avReportBLL.GetSubjectWiseUsageDetail(stateCodes, districtCodes, branchCodes, classCodes, subjectCode, startDate, endDate);
+
+                    if (jsonData != null)
+                    {
+                        return Ok(avReportBLL.GetSubjectWiseUsageDetail(stateCodes, districtCodes, branchCodes, classCodes, subjectCode, startDate, endDate));
+                    }
+                    else
+                    {
+                        return Ok();
+                    }
                 }
                 else
                 {
-                    return InternalServerError();
+                    return BadRequest();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                return BadRequest();
+                return InternalServerError(ex);
             }
+          
         }
 
     }

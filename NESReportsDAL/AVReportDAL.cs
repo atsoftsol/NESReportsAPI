@@ -39,7 +39,7 @@ namespace NESReportsDAL
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -70,7 +70,7 @@ namespace NESReportsDAL
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -101,7 +101,7 @@ namespace NESReportsDAL
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -132,7 +132,7 @@ namespace NESReportsDAL
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -164,7 +164,7 @@ namespace NESReportsDAL
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -197,7 +197,7 @@ namespace NESReportsDAL
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -230,7 +230,7 @@ namespace NESReportsDAL
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -262,7 +262,7 @@ namespace NESReportsDAL
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -294,7 +294,7 @@ namespace NESReportsDAL
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -329,7 +329,7 @@ namespace NESReportsDAL
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -363,7 +363,7 @@ namespace NESReportsDAL
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -399,7 +399,7 @@ namespace NESReportsDAL
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
@@ -435,7 +435,7 @@ namespace NESReportsDAL
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 throw;
             }
