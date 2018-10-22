@@ -33,6 +33,7 @@ namespace NESReportsDTO
     {
         public long branchId { get; set; }
         public string branchName { get; set; }
+        public string eurekaBranchCode { get; set; }
     }
 
     /// <summary>

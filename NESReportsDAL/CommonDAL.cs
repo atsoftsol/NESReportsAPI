@@ -37,9 +37,9 @@ namespace NESReportsDAL
                         avReport.data = JsonConvert.SerializeObject(dt);
                         avReport.sorting = "Per(%)";
                         List<string> strList = new List<string>();
+                        strList.Add("Strength");
                         strList.Add("Duration");
                         strList.Add("Per(%)");
-                        strList.Add("Strength");
                         avReport.footerTotalColumns = strList;
                     }
 

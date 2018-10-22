@@ -134,6 +134,27 @@ namespace NESReportsBLL
         }
 
         /// <summary>
+        /// Class Wise Usage detail 
+        /// </summary>
+        /// <param name="StateCodes"></param>
+        /// <param name="DistrictCodes"></param>
+        /// <param name="BranchCodes"></param>
+        /// <param name="StartDate"></param>
+        /// <param name="EndDate"></param>
+        /// <returns></returns>
+        public AVReportDTO GetClassWiseUsageDetail(string StateCodes, string DistrictCodes, string BranchCodes, string ClassCode, string StartDate, string EndDate)
+        {
+            try
+            {
+                return avReportDAL.GetClassWiseUsageDetail(StateCodes, DistrictCodes, BranchCodes, ClassCode, StartDate, EndDate);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
         /// Branch Wise Usage By State and District
         /// </summary>
         /// <param name="StateCodes"></param>

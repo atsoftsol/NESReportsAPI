@@ -237,6 +237,111 @@ namespace NESReportsDAL
         }
 
         /// <summary>
+        ///  Class Wise Usage Detail 
+        /// </summary>
+        /// <param name="StateCodes"></param>
+        /// <returns></returns>
+        public AVReportDTO GetClassWiseUsageDetail(string StateCodes, string DistrictCodes, string BranchCodes, string ClassCode, string StartDate, string EndDate)
+        {
+            try
+            {
+                string connectionString = ConfigurationManager.ConnectionStrings["connstring"].ConnectionString;
+                using (MySqlConnection con = new MySqlConnection(connectionString))
+                {
+                    using (MySqlCommand cmd = new MySqlCommand("GET_CLASS_WIDE_USAGE_DETAIL", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@StateCodes", CommonDAL.AddingDoubleCodes(StateCodes));
+                        cmd.Parameters.AddWithValue("@DistrictCodes", CommonDAL.AddingDoubleCodes(DistrictCodes));
+                        cmd.Parameters.AddWithValue("@BranchCodes", CommonDAL.AddingDoubleCodes(BranchCodes));
+                        cmd.Parameters.AddWithValue("@ClassCode", CommonDAL.AddingDoubleCodes(ClassCode));
+                        cmd.Parameters.AddWithValue("@StartDate", StartDate.Replace(@"\", "").Replace(@"""", @""));
+                        cmd.Parameters.AddWithValue("@EndDate", EndDate.Replace(@"\", "").Replace(@"""", @""));
+                        using (MySqlDataAdapter sda = new MySqlDataAdapter(cmd))
+                        {
+                            return CommonDAL.DataTableToJsonstring(cmd);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Subject Wise Usage Summary Reports by State and District and Branch and Class
+        /// </summary>
+        /// <param name="StateCodes"></param>
+        /// <param name="DistrictCodes"></param>
+        /// <returns></returns>
+        public AVReportDTO GetSubjectWiseUsageSummary(string StateCodes, string DistrictCodes, string BranchCodes, string ClassCodes, string StartDate, string EndDate)
+        {
+            try
+            {
+                string connectionString = ConfigurationManager.ConnectionStrings["connstring"].ConnectionString;
+                using (MySqlConnection con = new MySqlConnection(connectionString))
+                {
+                    using (MySqlCommand cmd = new MySqlCommand("GET_SUBJECT_WIDE_USAGE_SUMMARY", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@StateCodes", CommonDAL.AddingDoubleCodes(StateCodes));
+                        cmd.Parameters.AddWithValue("@DistrictCodes", CommonDAL.AddingDoubleCodes(DistrictCodes));
+                        cmd.Parameters.AddWithValue("@BranchCodes", CommonDAL.AddingDoubleCodes(BranchCodes));
+                        cmd.Parameters.AddWithValue("@ClassCode", CommonDAL.AddingDoubleCodes(ClassCodes));
+                        cmd.Parameters.AddWithValue("@StartDate", StartDate.Replace(@"\", "").Replace(@"""", @""));
+                        cmd.Parameters.AddWithValue("@EndDate", EndDate.Replace(@"\", "").Replace(@"""", @""));
+                        using (MySqlDataAdapter sda = new MySqlDataAdapter(cmd))
+                        {
+                            return CommonDAL.DataTableToJsonstring(cmd);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Subject Wise Usage Detail Reports by State and District and Branch and Class and Subject
+        /// </summary>
+        /// <param name="StateCodes"></param>
+        /// <param name="DistrictCodes"></param>
+        /// <returns></returns>
+        public AVReportDTO GetSubjectWiseUsageDetail(string StateCodes, string DistrictCodes, string BranchCodes, string ClassCodes, string SubjectCodes, string StartDate, string EndDate)
+        {
+            try
+            {
+                string connectionString = ConfigurationManager.ConnectionStrings["connstring"].ConnectionString;
+                using (MySqlConnection con = new MySqlConnection(connectionString))
+                {
+                    using (MySqlCommand cmd = new MySqlCommand("GET_SUBJECT_WIDE_USAGE_DETAIL", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@StateCodes", CommonDAL.AddingDoubleCodes(StateCodes));
+                        cmd.Parameters.AddWithValue("@DistrictCodes", CommonDAL.AddingDoubleCodes(DistrictCodes));
+                        cmd.Parameters.AddWithValue("@BranchCodes", CommonDAL.AddingDoubleCodes(BranchCodes));
+                        cmd.Parameters.AddWithValue("@ClassCodes", CommonDAL.AddingDoubleCodes(ClassCodes));
+                        cmd.Parameters.AddWithValue("@SubjectCodes", CommonDAL.AddingDoubleCodes(SubjectCodes));
+                        cmd.Parameters.AddWithValue("@StartDate", StartDate.Replace(@"\", "").Replace(@"""", @""));
+                        cmd.Parameters.AddWithValue("@EndDate", EndDate.Replace(@"\", "").Replace(@"""", @""));
+                        using (MySqlDataAdapter sda = new MySqlDataAdapter(cmd))
+                        {
+                            return CommonDAL.DataTableToJsonstring(cmd);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
         /// District Wise Usage Report by State and District 
         /// </summary>
         /// <param name="StateCodes"></param>
@@ -251,10 +356,10 @@ namespace NESReportsDAL
                     using (MySqlCommand cmd = new MySqlCommand("GetUsageDistrictsByStatesandDistrict", con))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@StateCodes", StateCodes);
-                        cmd.Parameters.AddWithValue("@DistrictCodes", DistrictCodes);
-                        cmd.Parameters.AddWithValue("@StartDate", StartDate);
-                        cmd.Parameters.AddWithValue("@EndDate", EndDate);
+                        cmd.Parameters.AddWithValue("@StateCodes", CommonDAL.AddingDoubleCodes(StateCodes));
+                        cmd.Parameters.AddWithValue("@DistrictCodes", CommonDAL.AddingDoubleCodes(DistrictCodes));
+                        cmd.Parameters.AddWithValue("@StartDate", StartDate.Replace(@"\", "").Replace(@"""", @""));
+                        cmd.Parameters.AddWithValue("@EndDate", EndDate.Replace(@"\", "").Replace(@"""", @""));
                         using (MySqlDataAdapter sda = new MySqlDataAdapter(cmd))
                         {
                             return CommonDAL.DataTableToJsonstring(cmd);
@@ -283,8 +388,8 @@ namespace NESReportsDAL
                     using (MySqlCommand cmd = new MySqlCommand("GetUsageBranchByStateandDistrict", con))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@StateCodes", StateCodes);
-                        cmd.Parameters.AddWithValue("@DistrictCodes", DistrictCodes);
+                        cmd.Parameters.AddWithValue("@StateCodes", CommonDAL.AddingDoubleCodes(StateCodes));
+                        cmd.Parameters.AddWithValue("@DistrictCodes", CommonDAL.AddingDoubleCodes(DistrictCodes));
                         cmd.Parameters.AddWithValue("@StartDate", StartDate.Replace(@"\", "").Replace(@"""", @""));
                         cmd.Parameters.AddWithValue("@EndDate", EndDate.Replace(@"\", "").Replace(@"""", @""));
                         using (MySqlDataAdapter sda = new MySqlDataAdapter(cmd))
@@ -317,11 +422,11 @@ namespace NESReportsDAL
                     using (MySqlCommand cmd = new MySqlCommand("GetUsageBranchByStateandDistrictandBranch", con))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@StateCodes", StateCodes);
-                        cmd.Parameters.AddWithValue("@DistrictCodes", DistrictCodes);
-                        cmd.Parameters.AddWithValue("@BranchCodes", BranchCodes);
-                        cmd.Parameters.AddWithValue("@StartDate", StartDate);
-                        cmd.Parameters.AddWithValue("@EndDate", EndDate);
+                        cmd.Parameters.AddWithValue("@StateCodes", CommonDAL.AddingDoubleCodes(StateCodes));
+                        cmd.Parameters.AddWithValue("@DistrictCodes", CommonDAL.AddingDoubleCodes(DistrictCodes));
+                        cmd.Parameters.AddWithValue("@BranchCodes", CommonDAL.AddingDoubleCodes(BranchCodes));
+                        cmd.Parameters.AddWithValue("@StartDate", StartDate.Replace(@"\", "").Replace(@"""", @""));
+                        cmd.Parameters.AddWithValue("@EndDate", EndDate.Replace(@"\", "").Replace(@"""", @""));
                         using (MySqlDataAdapter sda = new MySqlDataAdapter(cmd))
                         {
                             return CommonDAL.DataTableToJsonstring(cmd);
@@ -351,11 +456,11 @@ namespace NESReportsDAL
                     using (MySqlCommand cmd = new MySqlCommand("GetClassByStateandDistrictandBranch", con))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@StateCodes", StateCodes);
-                        cmd.Parameters.AddWithValue("@DistrictCodes", DistrictCodes);
-                        cmd.Parameters.AddWithValue("@BranchCodes", BranchCodes);
-                        cmd.Parameters.AddWithValue("@StartDate", StartDate);
-                        cmd.Parameters.AddWithValue("@EndDate", EndDate);
+                        cmd.Parameters.AddWithValue("@StateCodes", CommonDAL.AddingDoubleCodes(StateCodes));
+                        cmd.Parameters.AddWithValue("@DistrictCodes", CommonDAL.AddingDoubleCodes(DistrictCodes));
+                        cmd.Parameters.AddWithValue("@BranchCodes", CommonDAL.AddingDoubleCodes(BranchCodes));
+                        cmd.Parameters.AddWithValue("@StartDate", StartDate.Replace(@"\", "").Replace(@"""", @""));
+                        cmd.Parameters.AddWithValue("@EndDate", EndDate.Replace(@"\", "").Replace(@"""", @""));
                         using (MySqlDataAdapter sda = new MySqlDataAdapter(cmd))
                         {
                             return CommonDAL.DataTableToJsonstring(cmd);
@@ -370,76 +475,7 @@ namespace NESReportsDAL
 
         }
 
-        /// <summary>
-        /// Subject Wise Usage Summary Reports by State and District and Branch and Class
-        /// </summary>
-        /// <param name="StateCodes"></param>
-        /// <param name="DistrictCodes"></param>
-        /// <returns></returns>
-        public AVReportDTO GetSubjectWiseUsageSummary(string StateCodes, string DistrictCodes, string BranchCodes, string ClassCodes, string StartDate, string EndDate)
-        {
-            try
-            {
-                string connectionString = ConfigurationManager.ConnectionStrings["connstring"].ConnectionString;
-                using (MySqlConnection con = new MySqlConnection(connectionString))
-                {
-                    using (MySqlCommand cmd = new MySqlCommand("GET_SUBJECT_WIDE_USAGE_SUMMARY", con))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@StateCodes", StateCodes);
-                        cmd.Parameters.AddWithValue("@DistrictCodes", DistrictCodes);
-                        cmd.Parameters.AddWithValue("@BranchCodes", BranchCodes);
-                        cmd.Parameters.AddWithValue("@ClassCode", ClassCodes);
-                        cmd.Parameters.AddWithValue("@StartDate", StartDate);
-                        cmd.Parameters.AddWithValue("@EndDate", EndDate);
-                        using (MySqlDataAdapter sda = new MySqlDataAdapter(cmd))
-                        {
-                            return CommonDAL.DataTableToJsonstring(cmd);
-                        }
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
 
-        /// <summary>
-        /// Subject Wise Usage Detail Reports by State and District and Branch and Class and Subject
-        /// </summary>
-        /// <param name="StateCodes"></param>
-        /// <param name="DistrictCodes"></param>
-        /// <returns></returns>
-        public AVReportDTO GetSubjectWiseUsageDetail(string StateCodes, string DistrictCodes, string BranchCodes, string ClassCodes,string SubjectCodes, string StartDate, string EndDate)
-        {
-            try
-            {
-                string connectionString = ConfigurationManager.ConnectionStrings["connstring"].ConnectionString;
-                using (MySqlConnection con = new MySqlConnection(connectionString))
-                {
-                    using (MySqlCommand cmd = new MySqlCommand("GET_SUBJECT_WIDE_USAGE_DETAIL", con))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@StateCodes", StateCodes);
-                        cmd.Parameters.AddWithValue("@DistrictCodes", DistrictCodes);
-                        cmd.Parameters.AddWithValue("@BranchCodes", BranchCodes);
-                        cmd.Parameters.AddWithValue("@ClassCode", ClassCodes);
-                        cmd.Parameters.AddWithValue("@SubjectCodes", SubjectCodes);
-                        cmd.Parameters.AddWithValue("@StartDate", StartDate);
-                        cmd.Parameters.AddWithValue("@EndDate", EndDate);
-                        using (MySqlDataAdapter sda = new MySqlDataAdapter(cmd))
-                        {
-                            return CommonDAL.DataTableToJsonstring(cmd);
-                        }
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
 
     }
 }
