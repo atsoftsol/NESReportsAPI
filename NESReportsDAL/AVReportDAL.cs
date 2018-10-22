@@ -81,7 +81,7 @@ namespace NESReportsDAL
         /// </summary>
         /// <param name="StateCodes"></param>
         /// <returns></returns>
-        public AVReportDTO GetDistrictWiseUsageSummary(string StateCodes, string StartDate, string EndDate)
+        public AVReportDTO GetDistrictWiseUsageSummary(string StateCodes, string DistrictCodes, string StartDate, string EndDate)
         {
             try
             {
@@ -92,6 +92,7 @@ namespace NESReportsDAL
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@StateCodes", CommonDAL.AddingDoubleCodes(StateCodes));
+                        cmd.Parameters.AddWithValue("@DistrictCodes", CommonDAL.AddingDoubleCodes(DistrictCodes));
                         cmd.Parameters.AddWithValue("@StartDate", StartDate.Replace(@"\", "").Replace(@"""", @""));
                         cmd.Parameters.AddWithValue("@EndDate", EndDate.Replace(@"\", "").Replace(@"""", @""));
                         using (MySqlDataAdapter sda = new MySqlDataAdapter(cmd))

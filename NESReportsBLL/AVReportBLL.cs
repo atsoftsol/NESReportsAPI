@@ -52,11 +52,11 @@ namespace NESReportsBLL
         /// </summary>
         /// <param name="StateCodes"></param>
         /// <returns></returns>
-        public AVReportDTO GetDistrictWiseUsageSummary(string StateCodes, string StartDate, string EndDate)
+        public AVReportDTO GetDistrictWiseUsageSummary(string StateCodes, string DistrictCodes, string StartDate, string EndDate)
         {
             try
             {
-                return avReportDAL.GetDistrictWiseUsageSummary(StateCodes, StartDate, EndDate);
+                return avReportDAL.GetDistrictWiseUsageSummary(StateCodes,DistrictCodes, StartDate, EndDate);
             }
             catch (Exception)
             {

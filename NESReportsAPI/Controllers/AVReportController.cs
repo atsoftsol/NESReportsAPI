@@ -93,18 +93,18 @@ namespace NESReportsAPI.Controllers
         /// <param name="startDate"></param>
         /// <param name="endDate"></param>
         /// <returns></returns>
-        [Route("districtwiseusagesummary/{stateCodes}/{startDate}/{endDate}")]
-        public IHttpActionResult GetDistrictWiseUsageSummary(string stateCodes, string startDate, string endDate)
+        [Route("districtwiseusagesummary/{stateCodes}/{districtCodes}/{startDate}/{endDate}")]
+        public IHttpActionResult GetDistrictWiseUsageSummary(string stateCodes,string districtCodes, string startDate, string endDate)
         {
             try
             {
                 if (!string.IsNullOrEmpty(stateCodes))
                 {
-                    AVReportDTO jsonData = avReportBLL.GetDistrictWiseUsageSummary(stateCodes, startDate, endDate);
+                    AVReportDTO jsonData = avReportBLL.GetDistrictWiseUsageSummary(stateCodes,districtCodes, startDate, endDate);
 
                     if (jsonData != null)
                     {
-                        return Ok(avReportBLL.GetDistrictWiseUsageSummary(stateCodes, startDate, endDate));
+                        return Ok(avReportBLL.GetDistrictWiseUsageSummary(stateCodes,districtCodes, startDate, endDate));
                     }
                     else
                     {
