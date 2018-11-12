@@ -94,17 +94,17 @@ namespace NESReportsAPI.Controllers
         /// <param name="endDate"></param>
         /// <returns></returns>
         [Route("districtwiseusagesummary/{stateCodes}/{districtCodes}/{startDate}/{endDate}")]
-        public IHttpActionResult GetDistrictWiseUsageSummary(string stateCodes,string districtCodes, string startDate, string endDate)
+        public IHttpActionResult GetDistrictWiseUsageSummary(string stateCodes, string districtCodes, string startDate, string endDate)
         {
             try
             {
                 if (!string.IsNullOrEmpty(stateCodes))
                 {
-                    AVReportDTO jsonData = avReportBLL.GetDistrictWiseUsageSummary(stateCodes,districtCodes, startDate, endDate);
+                    AVReportDTO jsonData = avReportBLL.GetDistrictWiseUsageSummary(stateCodes, districtCodes, startDate, endDate);
 
                     if (jsonData != null)
                     {
-                        return Ok(avReportBLL.GetDistrictWiseUsageSummary(stateCodes,districtCodes, startDate, endDate));
+                        return Ok(avReportBLL.GetDistrictWiseUsageSummary(stateCodes, districtCodes, startDate, endDate));
                     }
                     else
                     {
@@ -130,7 +130,7 @@ namespace NESReportsAPI.Controllers
         /// <param name="endDate"></param>
         /// <returns></returns>
         [Route("districtwiseusagedetails/{districtCode}/{startDate}/{endDate}")]
-        public IHttpActionResult GetDistrictWiseUsageDetail(string districtCode, string startDate, string endDate)
+        public IHttpActionResult GetDistrictWiseUsageDetail([FromUri] string districtCode, string startDate, string endDate)
         {
             try
             {
@@ -154,9 +154,9 @@ namespace NESReportsAPI.Controllers
             }
             catch (Exception ex)
             {
-               return InternalServerError(ex);
+                return InternalServerError(ex);
             }
-           
+
         }
 
         /// <summary>
@@ -195,7 +195,7 @@ namespace NESReportsAPI.Controllers
                 return InternalServerError(ex);
             }
 
-         
+
         }
 
         /// <summary>
@@ -388,8 +388,14 @@ namespace NESReportsAPI.Controllers
             {
                 return InternalServerError(ex);
             }
-          
+
         }
 
+
+        //[Route("getIds")]
+        //public IHttpActionResult GetIds(string ids)
+        //{
+        //    return Ok(ids);
+        //}
     }
 }

@@ -73,6 +73,7 @@
     <Compile Include="AVReportDAL.cs" />
     <Compile Include="CommonDAL.cs" />
     <Compile Include="CommonHeaderDAL.cs" />
+    <Compile Include="FeedBackDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

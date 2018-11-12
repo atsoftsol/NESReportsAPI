@@ -13,6 +13,8 @@ namespace NESReportsDAL
 {
     public class CommonHeaderDAL
     {
+        #region Mysql
+
         /// <summary>
         /// get States List
         /// </summary>
@@ -76,8 +78,8 @@ namespace NESReportsDAL
             try
             {
                 MySqlParameter[] parameters = {
-                new MySqlParameter("@p_district_ids",  CommonDAL.AddingDoubleCodes(districtIds))
-                     };
+                    new MySqlParameter("@p_district_ids",  CommonDAL.AddingDoubleCodes(districtIds))
+                         };
 
                 DataSet dsDistrict = CommonDAL.GetRecordWithExtendedTimeOut("GET_BRANCHES", parameters);
                 List<Branches> model = new List<Branches>();
@@ -141,15 +143,19 @@ namespace NESReportsDAL
             }
         }
 
+        #endregion
+
+        #region Oracle
+
         /// <summary>
         /// Get States
         /// </summary>
         /// <returns></returns>
-        public AVReportDTO GetStates()
+        public List<States> GetStates()
         {
             try
             {
-                string connectionString = ConfigurationManager.ConnectionStrings["OracleString"].ConnectionString;
+                string connectionString = ConfigurationManager.ConnectionStrings["OracleMasterString"].ConnectionString;
                 using (OracleConnection con = new OracleConnection(connectionString))
                 {
                     using (OracleCommand cmd = new OracleCommand("GET_STATES", con))
@@ -160,7 +166,11 @@ namespace NESReportsDAL
 
                         using (OracleDataAdapter sda = new OracleDataAdapter(cmd))
                         {
-                            return CommonDAL.OracleDataTableToJsonstring(cmd);
+
+                            DataTable dt = new DataTable();
+                            sda.Fill(dt);
+                            return CommonDAL.CreateListFromTable<States>(dt);
+
                         }
                     }
                 }
@@ -176,22 +186,24 @@ namespace NESReportsDAL
         /// </summary>
         /// <param name="stateCodes"></param>
         /// <returns></returns>
-        public AVReportDTO GetDistrict(int stateCodes)
+        public List<Districts> GetDistrict(string stateCodes)
         {
             try
             {
-                string connectionString = ConfigurationManager.ConnectionStrings["OracleString"].ConnectionString;
+                string connectionString = ConfigurationManager.ConnectionStrings["OracleMasterString"].ConnectionString;
                 using (OracleConnection con = new OracleConnection(connectionString))
                 {
                     using (OracleCommand cmd = new OracleCommand("GET_DISTRICTS", con))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.Add("iSTATESLNO", OracleDbType.Int32).Value = stateCodes;
+                        cmd.Parameters.Add("iSTATESLNO", OracleDbType.Varchar2).Value = stateCodes;
                         cmd.Parameters.Add("DATACUR", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
 
                         using (OracleDataAdapter sda = new OracleDataAdapter(cmd))
                         {
-                            return CommonDAL.OracleDataTableToJsonstring(cmd);
+                            DataTable dt = new DataTable();
+                            sda.Fill(dt);
+                            return CommonDAL.CreateListFromTable<Districts>(dt);
                         }
                     }
                 }
@@ -203,16 +215,91 @@ namespace NESReportsDAL
 
         }
 
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="districtIds"></param>
+        /// <returns></returns>
+        public List<Branches> GetOBranches(string districtIds)
+        {
+
+            try
+            {
+                string connectionString = ConfigurationManager.ConnectionStrings["OracleSchoolString"].ConnectionString;
+                using (OracleConnection con = new OracleConnection(connectionString))
+                {
+                    using (OracleCommand cmd = new OracleCommand("GET_BRANCHS", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add("iDISTRICTSLNO", OracleDbType.Varchar2).Value = districtIds;
+                        cmd.Parameters.Add("DATACUR", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
+
+                        using (OracleDataAdapter sda = new OracleDataAdapter(cmd))
+                        {
+                            DataTable dt = new DataTable();
+                            sda.Fill(dt);
+                            return CommonDAL.CreateListFromTable<Branches>(dt);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+
+
+          /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="districtIds"></param>
+        /// <returns></returns>
+        public List<Course> GetOCourses()
+        {
+
+            try
+            {
+                string connectionString = ConfigurationManager.ConnectionStrings["OracleSchoolString"].ConnectionString;
+                using (OracleConnection con = new OracleConnection(connectionString))
+                {
+                    using (OracleCommand cmd = new OracleCommand("GET_COURSES", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add("DATACUR", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
+
+                        using (OracleDataAdapter sda = new OracleDataAdapter(cmd))
+                        {
+                            DataTable dt = new DataTable();
+                            sda.Fill(dt);
+                            return CommonDAL.CreateListFromTable<Course>(dt);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+
+        
+
         /// <summary>
         /// Get Category By Report ID
         /// </summary>
         /// <param name="StateCodes"></param>
         /// <returns></returns>
-        public AVReportDTO GetCategoryByReportId(int reportType)
+        public List<ReportCategory> GetCategoryByReportId(int reportType)
         {
             try
             {
-                string connectionString = ConfigurationManager.ConnectionStrings["OracleString"].ConnectionString;
+                string connectionString = ConfigurationManager.ConnectionStrings["OracleMasterString"].ConnectionString;
                 using (OracleConnection con = new OracleConnection(connectionString))
                 {
                     using (OracleCommand cmd = new OracleCommand("GET_INSPECTION_REPORT_CATEGORY", con))
@@ -223,7 +310,9 @@ namespace NESReportsDAL
 
                         using (OracleDataAdapter sda = new OracleDataAdapter(cmd))
                         {
-                            return CommonDAL.OracleDataTableToJsonstring(cmd);
+                            DataTable dt = new DataTable();
+                            sda.Fill(dt);
+                            return CommonDAL.CreateListFromTable<ReportCategory>(dt);
                         }
                     }
                 }
@@ -239,9 +328,9 @@ namespace NESReportsDAL
         /// </summary>
         /// <param name="StateCodes"></param>
         /// <returns></returns>
-        public AVReportDTO GetSubCategoryByReportTypeAndCategory(int reportType, int category)
+        public List<ReportSubCategory> GetSubCategoryByReportTypeAndCategory(int reportType, int category)
         {
-            string connectionString = ConfigurationManager.ConnectionStrings["OracleString"].ConnectionString;
+            string connectionString = ConfigurationManager.ConnectionStrings["OracleMasterString"].ConnectionString;
             using (OracleConnection con = new OracleConnection(connectionString))
             {
                 using (OracleCommand cmd = new OracleCommand("GET_INSPECTION_SUB_CATEGORY", con))
@@ -253,7 +342,9 @@ namespace NESReportsDAL
 
                     using (OracleDataAdapter sda = new OracleDataAdapter(cmd))
                     {
-                        return CommonDAL.OracleDataTableToJsonstring(cmd);
+                        DataTable dt = new DataTable();
+                        sda.Fill(dt);
+                        return CommonDAL.CreateListFromTable<ReportSubCategory>(dt);
                     }
                 }
             }
@@ -265,11 +356,11 @@ namespace NESReportsDAL
         /// </summary>
         /// <param name="StateCodes"></param>
         /// <returns></returns>
-        public AVReportDTO GetReports()
+        public List<ReportType> GetReports()
         {
             try
             {
-                string connectionString = ConfigurationManager.ConnectionStrings["OracleString"].ConnectionString;
+                string connectionString = ConfigurationManager.ConnectionStrings["OracleMasterString"].ConnectionString;
                 using (OracleConnection con = new OracleConnection(connectionString))
                 {
                     using (OracleCommand cmd = new OracleCommand("GET_REPORT_TYPES", con))
@@ -279,7 +370,9 @@ namespace NESReportsDAL
 
                         using (OracleDataAdapter sda = new OracleDataAdapter(cmd))
                         {
-                            return CommonDAL.OracleDataTableToJsonstring(cmd);
+                            DataTable dt = new DataTable();
+                            sda.Fill(dt);
+                            return CommonDAL.CreateListFromTable<ReportType>(dt);
                         }
                     }
                 }
@@ -289,5 +382,7 @@ namespace NESReportsDAL
                 throw;
             }
         }
+
+        #endregion
     }
 }

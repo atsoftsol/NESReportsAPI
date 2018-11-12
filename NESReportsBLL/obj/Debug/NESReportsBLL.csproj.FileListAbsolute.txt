@@ -43,3 +43,15 @@ D:\surya\NESReportsAPI\NESReportsBLL\bin\Debug\Newtonsoft.Json.xml
 D:\surya\NESReportsAPI\NESReportsBLL\obj\Debug\NESReportsBLL.csprojResolveAssemblyReference.cache
 D:\surya\NESReportsAPI\NESReportsBLL\obj\Debug\NESReportsBLL.dll
 D:\surya\NESReportsAPI\NESReportsBLL\obj\Debug\NESReportsBLL.pdb
+D:\Gouse\API\NESReportsAPI\NESReportsBLL\bin\Debug\NESReportsBLL.dll
+D:\Gouse\API\NESReportsAPI\NESReportsBLL\bin\Debug\NESReportsBLL.pdb
+D:\Gouse\API\NESReportsAPI\NESReportsBLL\bin\Debug\NESReportsDAL.dll
+D:\Gouse\API\NESReportsAPI\NESReportsBLL\bin\Debug\NESReportsDTO.dll
+D:\Gouse\API\NESReportsAPI\NESReportsBLL\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\Gouse\API\NESReportsAPI\NESReportsBLL\bin\Debug\Newtonsoft.Json.dll
+D:\Gouse\API\NESReportsAPI\NESReportsBLL\bin\Debug\NESReportsDAL.pdb
+D:\Gouse\API\NESReportsAPI\NESReportsBLL\bin\Debug\NESReportsDTO.pdb
+D:\Gouse\API\NESReportsAPI\NESReportsBLL\bin\Debug\Newtonsoft.Json.xml
+D:\Gouse\API\NESReportsAPI\NESReportsBLL\obj\Debug\NESReportsBLL.csprojResolveAssemblyReference.cache
+D:\Gouse\API\NESReportsAPI\NESReportsBLL\obj\Debug\NESReportsBLL.dll
+D:\Gouse\API\NESReportsAPI\NESReportsBLL\obj\Debug\NESReportsBLL.pdb

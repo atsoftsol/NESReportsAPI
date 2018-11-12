@@ -33,14 +33,18 @@ namespace NESReportsDAL
 
                     if (dt != null && dt.Rows.Count > 0)
                     {
-                        avReport.columns = CollectColumns(dt);
+                        avReport.columns = CollectColumnsStyle(dt);
                         avReport.data = JsonConvert.SerializeObject(dt);
                         avReport.sorting = "Per(%)";
-                        List<string> strList = new List<string>();
-                        strList.Add("Strength");
-                        strList.Add("Duration");
-                        strList.Add("Per(%)");
-                        avReport.footerTotalColumns = strList;
+
+                        List<Column> footercolumns = new List<Column>();
+                        footercolumns.Add(new Column { align = "right", name = "Strength" });
+                        footercolumns.Add(new Column { align = "center", name = "Target" });
+                        footercolumns.Add(new Column { align = "center", name = "Duration" });
+                        footercolumns.Add(new Column { align = "center", name = "Diff" });
+                        footercolumns.Add(new Column { align = "right", name = "Per(%)" });
+                        avReport.footerTotalColumns = footercolumns;
+
                     }
 
                     return avReport;
@@ -73,6 +77,48 @@ namespace NESReportsDAL
                 throw;
             }
         }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        public static List<Column> CollectColumnsStyle(DataTable dt)
+        {
+            try
+            {
+                Dictionary<string, string> dictionary = new Dictionary<string, string>();
+                dictionary.Add("Sl.No", "right");
+                dictionary.Add("Strength", "right");
+                dictionary.Add("Target", "center");
+                dictionary.Add("Duration", "center");
+                dictionary.Add("Diff", "center");
+                dictionary.Add("Per(%)", "right");
+
+                List<Column> columns = new List<Column>();
+                foreach (DataColumn column in dt.Columns)
+                {
+                    var thisTag = dictionary.FirstOrDefault(t => t.Key == column.ColumnName);
+
+                    if (dictionary.ContainsKey(column.ColumnName))
+                    {
+                        columns.Add(new Column { align = thisTag.Value, name = thisTag.Key });
+                    }
+                    else
+                    {
+                        columns.Add(new Column { align = "left", name = column.ColumnName });
+                    }
+                }
+                return columns;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
 
         /// <summary>
         /// function that creates a list of an object from the given data table
@@ -201,10 +247,88 @@ namespace NESReportsDAL
                     DataTable dt = new DataTable();
                     sqlDataAdapter.Fill(dt);
 
+                    /// adding strength
+                    List<Column> footercolumns = new List<Column>();
+                    footercolumns.Add(new Column { align = "right", name = "Strength" });
+                    footercolumns.Add(new Column { align = "center", name = "Target" });
+                    footercolumns.Add(new Column { align = "center", name = "Duration" });
+                    footercolumns.Add(new Column { align = "center", name = "Diff" });
+                    footercolumns.Add(new Column { align = "right", name = "Per(%)" });
+
                     if (dt != null && dt.Rows.Count > 0)
                     {
-                        avReport.columns = CollectColumns(dt);
+                        DataColumn Col = dt.Columns.Add("Diff", typeof(string));
+                        int position = dt.Columns.IndexOf("Duration");
+                        Col.SetOrdinal(position + 1);
+                        string fromDate = string.Empty;
+                        string toDate = string.Empty;
+
+                        foreach (DataRow dr in dt.Rows)
+                        {
+                            fromDate = dr["Target"].ToString();
+                            toDate = dr["Duration"].ToString();
+                            string[] splitfromDate = fromDate.Split(':');
+                            TimeSpan spfromdate = new TimeSpan(int.Parse(splitfromDate[0]), int.Parse(splitfromDate[1]), int.Parse(splitfromDate[2]));
+                            string[] splittoDate = toDate.Split(':');
+                            TimeSpan sptodate = new TimeSpan(int.Parse(splittoDate[0]), int.Parse(splittoDate[1]), int.Parse(splittoDate[2]));
+                            TimeSpan difference = spfromdate.Subtract(sptodate);
+
+                            if (difference.TotalHours >= 0)
+                            {
+                                dr["Diff"] = string.Format("{0}:{1}:{2}",
+                                    difference.TotalHours < 10 ?
+                                    "0" + ((int)difference.Hours).ToString() : ((int)difference.Hours).ToString(),
+                                    difference.Minutes < 10 ?
+                                    "0" + ((int)difference.Minutes).ToString() : ((int)difference.Minutes).ToString()
+                                , difference.Seconds < 10 ?
+                                    "0" + ((int)difference.Seconds).ToString() : ((int)difference.Seconds).ToString());
+                            }
+                            else
+                            {
+                                int hours = (int)difference.Hours;
+                                int minutes = (int)difference.Minutes;
+                                int seconds = (int)difference.Seconds;
+
+                                if (hours < 0)
+                                {
+                                    hours = hours * -1;
+                                }
+
+                                if (minutes < 0)
+                                {
+                                    minutes = minutes * -1;
+                                }
+
+                                if (seconds < 0)
+                                {
+                                    seconds = seconds * -1;
+                                }
+
+
+                                dr["Diff"] = "-" + string.Format("{0}:{1}:{2}",
+                                    (hours < 10) ?
+                                    "0" + (hours).ToString() : (hours).ToString(),
+                                    (minutes < 10) ?
+                                    "0" + (minutes).ToString() : (minutes).ToString()
+                                , (seconds < 10) ?
+                                    "0" + (seconds).ToString() : (seconds).ToString());
+                            }
+                        }
+
+                        avReport.columns = CollectColumnsStyle(dt);
                         avReport.data = JsonConvert.SerializeObject(dt);
+                        avReport.sorting = "Per(%)";
+                        avReport.footerTotalColumns = footercolumns;
+                    }
+                    else
+                    {
+                        if (dt.Columns.Count > 0)
+                        {
+                            avReport.columns = CollectColumnsStyle(dt);
+                            avReport.data = "[]";
+                            avReport.sorting = "Per(%)";
+                            avReport.footerTotalColumns = footercolumns;
+                        }
                     }
                 }
                 return avReport;
@@ -214,7 +338,51 @@ namespace NESReportsDAL
                 throw;
             }
 
+        }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="cmd"></param>
+        /// <returns></returns>
+        public static FeedBackDTO OracleDataTableFeedBackReportToJsonstring(OracleCommand cmd, string sortingType)
+        {
+            try
+            {
+                FeedBackDTO feedBackReport = new FeedBackDTO();
+                using (OracleDataAdapter sqlDataAdapter = new OracleDataAdapter(cmd))
+                {
+                    DataTable dt = new DataTable();
+                    sqlDataAdapter.Fill(dt);
+
+                    /// adding strength
+                    List<Column> footercolumns = new List<Column>();
+
+                    if (dt != null && dt.Rows.Count > 0)
+                    {
+                        feedBackReport.columns = CollectColumnsStyle(dt);
+                        feedBackReport.data = JsonConvert.SerializeObject(dt);
+                        feedBackReport.sorting = sortingType;
+                        //   feedBackReport.footerTotalColumns = footercolumns;
+                    }
+                    else
+                    {
+                        if (dt.Columns.Count > 0)
+                        {
+                            feedBackReport.columns = CollectColumnsStyle(dt);
+                            feedBackReport.data = "[]";
+                            feedBackReport.sorting = sortingType;
+                            //     feedBackReport.footerTotalColumns = footercolumns;
+                        }
+                    }
+                }
+                return feedBackReport;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
 
         }
 

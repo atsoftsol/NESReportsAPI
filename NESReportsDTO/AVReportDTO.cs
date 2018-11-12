@@ -11,15 +11,22 @@ namespace NESReportsDTO
     /// </summary>
     public class AVReportDTO
     {
-        public List<string> columns { get; set; }
+        public List<Column> columns { get; set; }
 
         public dynamic data { get; set; }
 
         [System.ComponentModel.DefaultValue("per(%)")]
         public string sorting { get; set; }
 
-        public List<string> footerTotalColumns { get; set; }
+        public List<Column> footerTotalColumns { get; set; }
+    
     }
 
+
+    public class Column
+    {
+        public string name { get; set; }
+        public string align { get; set; }
+    }
 }
 

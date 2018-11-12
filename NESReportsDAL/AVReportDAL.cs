@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using NESReportsDTO;
 using Newtonsoft.Json;
+using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -13,6 +14,8 @@ namespace NESReportsDAL
 {
     public class AVReportDAL
     {
+        #region mysql
+
         /// <summary>
         /// State Wise Usage Summary 
         /// </summary>
@@ -476,6 +479,98 @@ namespace NESReportsDAL
 
         }
 
+        #endregion
+
+
+        /// <summary>
+        /// State Wise Usage Summary 
+        /// </summary>
+        /// <param name="StateCodes"></param>
+        /// <returns></returns>
+        public AVReportDTO GetAvReportSummary(string StateCodes, string DistrictCodes, string BranchCode, string ClassCode, string StartDate, string EndDate)
+        {
+            try
+            {
+                string connectionString = ConfigurationManager.ConnectionStrings["OracleSchoolString"].ConnectionString;
+                using (OracleConnection con = new OracleConnection(connectionString))
+                {
+                    using (OracleCommand cmd = new OracleCommand("GET_AVREPORT", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add("iSTATEID", OracleDbType.Varchar2).Value = StateCodes;
+
+                        if (DistrictCodes == string.Empty)
+                            cmd.Parameters.Add("iDISTRICT", OracleDbType.Varchar2).Value = DBNull.Value;
+                        else
+                            cmd.Parameters.Add("iDISTRICT", OracleDbType.Varchar2).Value = DistrictCodes;
+
+                        if (BranchCode == string.Empty)
+                            cmd.Parameters.Add("iBRANCH", OracleDbType.Varchar2).Value = DBNull.Value;
+                        else
+                            cmd.Parameters.Add("iBRANCH", OracleDbType.Varchar2).Value = BranchCode;
+
+                        if (ClassCode == string.Empty)
+                            cmd.Parameters.Add("iCLASS", OracleDbType.Varchar2).Value = DBNull.Value;
+                        else
+                            cmd.Parameters.Add("iCLASS", OracleDbType.Varchar2).Value = ClassCode;
+
+                        cmd.Parameters.Add("iSTARTDATE", OracleDbType.Varchar2).Value = StartDate.Replace(@"\", "").Replace(@"""", @"");
+                        cmd.Parameters.Add("iENDDATE", OracleDbType.Varchar2).Value = EndDate.Replace(@"\", "").Replace(@"""", @"");
+                        cmd.Parameters.Add("DATACUR", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
+
+                        using (OracleDataAdapter sda = new OracleDataAdapter(cmd))
+                        {
+                            return CommonDAL.OracleDataTableToJsonstring(cmd);
+                        }
+                    }
+                }
+
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
+        /// <summary>
+        /// State Wise Usage Details 
+        /// </summary>
+        /// <param name="StateCodes"></param>
+        /// <returns></returns>
+        public AVReportDTO GetAvReportDetails(int StateCodes, int DistrictCodes, int BranchCode, int ClassCode, string StartDate, string EndDate)
+        {
+            try
+            {
+                string connectionString = ConfigurationManager.ConnectionStrings["OracleSchoolString"].ConnectionString;
+                using (OracleConnection con = new OracleConnection(connectionString))
+                {
+                    using (OracleCommand cmd = new OracleCommand("GET_AVREPORTSUMMARY", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add("iSTATEID", OracleDbType.Int32).Value = StateCodes;
+                        cmd.Parameters.Add("iDISTRICT", OracleDbType.Int32).Value = DistrictCodes;
+                        cmd.Parameters.Add("iBRANCH", OracleDbType.Int32).Value = BranchCode;
+                        cmd.Parameters.Add("iCLASS", OracleDbType.Int32).Value = ClassCode;
+                        cmd.Parameters.Add("iSTARTDATE", OracleDbType.Varchar2).Value = StartDate.Replace(@"\", "").Replace(@"""", @"");
+                        cmd.Parameters.Add("iENDDATE", OracleDbType.Varchar2).Value = EndDate.Replace(@"\", "").Replace(@"""", @"");
+                        cmd.Parameters.Add("DATACUR", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
+
+                        using (OracleDataAdapter sda = new OracleDataAdapter(cmd))
+                        {
+                            return CommonDAL.OracleDataTableToJsonstring(cmd);
+                        }
+                    }
+                }
+
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
 
 
     }

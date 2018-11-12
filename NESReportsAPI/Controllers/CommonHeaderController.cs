@@ -23,7 +23,7 @@ namespace NESReportsAPI.Controllers
         {
             try
             {
-                return Ok(commonHeaderBLL.GetStates());
+                return Ok(commonHeaderBLL.GetStateList());
             }
             catch (Exception ex)
             {
@@ -35,7 +35,7 @@ namespace NESReportsAPI.Controllers
         /// Get Districts
         /// </summary>
         /// <returns></returns>
-        [Route("districts/{stateIds}")]
+        [Route("districts")]
         public IHttpActionResult GetDistrict(string stateIds)
         {
             try
@@ -54,13 +54,13 @@ namespace NESReportsAPI.Controllers
         /// </summary>
         /// <param name="districtIds"></param>
         /// <returns></returns>
-        [Route("branches/{districtIds}")]
+        [Route("branches")]
         public IHttpActionResult GetBranches(string districtIds)
         {
             try
             {
                 CommonHeaderBLL commonHeaderBLL = new CommonHeaderBLL();
-                return Ok(commonHeaderBLL.GetBranches(districtIds));
+                return Ok(commonHeaderBLL.GetOBranches(districtIds));
             }
             catch (Exception ex)
             {
@@ -78,7 +78,7 @@ namespace NESReportsAPI.Controllers
             try
             {
                 CommonHeaderBLL commonHeaderBLL = new CommonHeaderBLL();
-                return Ok(commonHeaderBLL.GetClasses());
+                return Ok(commonHeaderBLL.GetOCourse());
             }
             catch (Exception ex)
             {

@@ -11,6 +11,7 @@ namespace NESReportsBLL
     public class CommonHeaderBLL
     {
         CommonHeaderDAL commonHeaderDAL = new CommonHeaderDAL();
+        #region Mysql
 
         /// <summary>
         /// Get States
@@ -25,9 +26,9 @@ namespace NESReportsBLL
             catch (Exception)
             {
                 throw;
-            } 
+            }
         }
-  
+
         /// <summary>
         /// Get District
         /// </summary>
@@ -37,7 +38,7 @@ namespace NESReportsBLL
         {
             try
             {
-                return commonHeaderDAL.GetDistrictList(stateIds);
+                return commonHeaderDAL.GetDistrict(stateIds);
             }
             catch (Exception)
             {
@@ -94,12 +95,84 @@ namespace NESReportsBLL
             }
         }
 
+
+
+        #endregion
+
+        #region Oracle
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public List<States> GetStateList()
+        {
+            try
+            {
+                return commonHeaderDAL.GetStates();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="stateId"></param>
+        /// <returns></returns>
+        public List<Districts> GetDistrictList(string stateIds)
+        {
+            try
+            {
+                return commonHeaderDAL.GetDistrict(stateIds);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="districtIds"></param>
+        /// <returns></returns>
+        public List<Branches> GetOBranches(string districtIds)
+        {
+            try
+            {
+                return commonHeaderDAL.GetOBranches(districtIds);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
+
+        public List<Course> GetOCourse()
+        {
+            try
+            {
+                return commonHeaderDAL.GetOCourses();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
         /// <summary>
         /// Get Category By ReportId
         /// </summary>
         /// <param name="ReportType"></param>
         /// <returns></returns>
-        public AVReportDTO GetCategoryByReportId(int ReportType)
+        public List<ReportCategory> GetCategoryByReportId(int ReportType)
         {
             try
             {
@@ -117,7 +190,7 @@ namespace NESReportsBLL
         /// <param name="ReportType"></param>
         /// <param name="category"></param>
         /// <returns></returns>
-        public AVReportDTO GetSubCategoryByReportTypeAndCategory(int ReportType, int category)
+        public List<ReportSubCategory> GetSubCategoryByReportTypeAndCategory(int ReportType, int category)
         {
             try
             {
@@ -133,7 +206,7 @@ namespace NESReportsBLL
         /// Get Reports
         /// </summary>
         /// <returns></returns>
-        public AVReportDTO GetReports()
+        public List<ReportType> GetReports()
         {
             try
             {
@@ -144,5 +217,8 @@ namespace NESReportsBLL
                 throw;
             }
         }
+
+        #endregion
+
     }
 }

@@ -57,4 +57,36 @@ namespace NESReportsDTO
         public string subjectCode { get; set; }
         public string subjectName { get; set; }
     }
+
+    /// <summary>
+    /// Report Type
+    /// </summary>
+    public class ReportType
+    {
+        public int reportId { get; set; }
+        public string reportName { get; set; }
+    }
+
+    /// <summary>
+    /// Report Category
+    /// </summary>
+    public class ReportCategory
+    {
+        public int categoryId { get; set; }
+        public string categoryName { get; set; }
+        public int reportId { get; set; }
+    }
+
+    /// <summary>
+    /// Report Sub Category
+    /// </summary>
+    public class ReportSubCategory
+    {
+        public int subCategoryId { get; set; }
+        public string subCategoryName { get; set; }
+        public int categoryId { get; set; }
+        public int reportId { get; set; }
+    }
+
+
 }

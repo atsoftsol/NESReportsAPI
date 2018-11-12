@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="AVReportBLL.cs" />
     <Compile Include="CommonHeaderBLL.cs" />
+    <Compile Include="FeedBackBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

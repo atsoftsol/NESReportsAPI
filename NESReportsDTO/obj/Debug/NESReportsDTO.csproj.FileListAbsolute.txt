@@ -15,3 +15,7 @@ D:\surya\NESReportsAPI\NESReportsDTO\bin\Debug\NESReportsDTO.dll
 D:\surya\NESReportsAPI\NESReportsDTO\bin\Debug\NESReportsDTO.pdb
 D:\surya\NESReportsAPI\NESReportsDTO\obj\Debug\NESReportsDTO.dll
 D:\surya\NESReportsAPI\NESReportsDTO\obj\Debug\NESReportsDTO.pdb
+D:\Gouse\API\NESReportsAPI\NESReportsDTO\bin\Debug\NESReportsDTO.dll
+D:\Gouse\API\NESReportsAPI\NESReportsDTO\bin\Debug\NESReportsDTO.pdb
+D:\Gouse\API\NESReportsAPI\NESReportsDTO\obj\Debug\NESReportsDTO.dll
+D:\Gouse\API\NESReportsAPI\NESReportsDTO\obj\Debug\NESReportsDTO.pdb

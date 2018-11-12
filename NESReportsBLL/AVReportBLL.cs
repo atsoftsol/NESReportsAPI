@@ -253,5 +253,50 @@ namespace NESReportsBLL
                 throw;
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="StateCodes"></param>
+        /// <param name="DistrictCodes"></param>
+        /// <param name="BranchCodes"></param>
+        /// <param name="ClassCodes"></param>
+        /// <param name="StartDate"></param>
+        /// <param name="EndDate"></param>
+        /// <returns></returns>
+        public AVReportDTO GetAvReportSummary(string StateCodes, string DistrictCodes, string BranchCodes, string ClassCodes, string StartDate, string EndDate)
+        {
+            try
+            {
+                return avReportDAL.GetAvReportSummary(StateCodes, DistrictCodes, BranchCodes, ClassCodes, StartDate, EndDate);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="StateCode"></param>
+        /// <param name="DistrictCode"></param>
+        /// <param name="BranchCode"></param>
+        /// <param name="ClassCode"></param>
+        /// <param name="StartDate"></param>
+        /// <param name="EndDate"></param>
+        /// <returns></returns>
+        public AVReportDTO GetAvReportDetails(int StateCode, int DistrictCode, int BranchCode, int ClassCode, string StartDate, string EndDate)
+        {
+            try
+            {
+                return avReportDAL.GetAvReportDetails(StateCode, DistrictCode, BranchCode, ClassCode, StartDate, EndDate);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
     }
 }
