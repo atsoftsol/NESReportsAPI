@@ -11,6 +11,8 @@ namespace NESReportsBLL
     public class CommonHeaderBLL
     {
         CommonHeaderDAL commonHeaderDAL = new CommonHeaderDAL();
+        CommonDAL commonDAL = new CommonDAL();
+
         #region Mysql
 
         /// <summary>
@@ -152,8 +154,10 @@ namespace NESReportsBLL
             }
         }
 
-
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public List<Course> GetOCourse()
         {
             try
@@ -165,7 +169,6 @@ namespace NESReportsBLL
                 throw;
             }
         }
-
 
         /// <summary>
         /// Get Category By ReportId
@@ -218,6 +221,23 @@ namespace NESReportsBLL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public AdminLogin CheckLogin(string userName, string password)
+        {
+            try
+            {
+                return commonDAL.CheckLogin(userName, password);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
         #endregion
 
     }

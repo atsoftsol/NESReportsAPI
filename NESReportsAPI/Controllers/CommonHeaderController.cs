@@ -161,5 +161,34 @@ namespace NESReportsAPI.Controllers
                 return InternalServerError(ex);
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        [Route("login")]
+        [HttpPost]
+
+        public IHttpActionResult CheckLogin([FromBody] Login login)
+        {
+            try
+            {
+                CommonHeaderBLL commonHeaderBLL = new CommonHeaderBLL();
+                AdminLogin adminLogin = commonHeaderBLL.CheckLogin(login.username, login.password);
+
+                if(string.IsNullOrEmpty(adminLogin.userName))
+                {
+                    return NotFound();
+                }
+
+                return Ok(adminLogin);
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
     }
 }

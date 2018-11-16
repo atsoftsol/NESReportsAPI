@@ -273,3 +273,6 @@ D:\Gouse\API\NESReportsAPI\NESReportsAPI\bin\NESReportsDAL.pdb
 D:\Gouse\API\NESReportsAPI\NESReportsAPI\obj\Release\NESReportsAPI.dll
 D:\Gouse\API\NESReportsAPI\NESReportsAPI\obj\Release\NESReportsAPI.pdb
 D:\Gouse\API\NESReportsAPI\NESReportsAPI\obj\Release\NESReportsAPI.csprojResolveAssemblyReference.cache
+D:\Gouse\API\NESReportsAPI\NESReportsAPI\bin\Microsoft.Owin.dll
+D:\Gouse\API\NESReportsAPI\NESReportsAPI\bin\Owin.dll
+D:\Gouse\API\NESReportsAPI\NESReportsAPI\bin\Microsoft.Owin.xml

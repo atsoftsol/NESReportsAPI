@@ -88,5 +88,23 @@ namespace NESReportsDTO
         public int reportId { get; set; }
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    public  class AdminLogin
+    {
+        public int id { get; set; }
+        public string userName { get; set; }
+      
+       
+    }
+
+
+    public class Login
+    {
+        public string username { get; set; }
+        public string password { get; set; }
+    }
+
 
 }

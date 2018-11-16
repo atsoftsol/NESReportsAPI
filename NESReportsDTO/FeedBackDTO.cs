@@ -15,7 +15,7 @@ namespace NESReportsDTO
         [System.ComponentModel.DefaultValue("State")]
         public string sorting { get; set; }
 
-     //   public List<Column> footerTotalColumns { get; set; }
+        //   public List<Column> footerTotalColumns { get; set; }
     }
 
     /// <summary>
@@ -25,7 +25,7 @@ namespace NESReportsDTO
     {
         public int FeedBackTypeId { get; set; }
         public string FeedBackTypeName { get; set; }
-     
+
     }
 
     /// <summary>
@@ -35,6 +35,17 @@ namespace NESReportsDTO
     {
         public int FeedBackCategoryId { get; set; }
         public string FeedBackCategoryName { get; set; }
-      
+
+    }
+    
+    /// <summary>
+    ///
+    /// </summary>
+    public class FeedBackSubCategory
+    {
+        public int FeedBackSubCategoryId { get; set; }
+        public int FeedBackCategoryId { get; set; }
+        public string FeedBackSubCategoryName { get; set; }
+
     }
 }

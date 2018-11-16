@@ -6,3 +6,6 @@ D:\Gouse\API\NESReportsAPI\NESReportsDTO\bin\Release\NESReportsDTO.dll
 D:\Gouse\API\NESReportsAPI\NESReportsDTO\bin\Release\NESReportsDTO.pdb
 D:\Gouse\API\NESReportsAPI\NESReportsDTO\obj\Release\NESReportsDTO.dll
 D:\Gouse\API\NESReportsAPI\NESReportsDTO\obj\Release\NESReportsDTO.pdb
+D:\Gouse\API\NESReportsAPI\NESReportsDTO\bin\Release\Microsoft.Owin.dll
+D:\Gouse\API\NESReportsAPI\NESReportsDTO\bin\Release\Owin.dll
+D:\Gouse\API\NESReportsAPI\NESReportsDTO\bin\Release\Microsoft.Owin.xml

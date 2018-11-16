@@ -56,11 +56,14 @@ D:\Gouse\API\NESReportsAPI\NESReportsDAL\bin\Debug\NESReportsDAL.dll.config
 D:\Gouse\API\NESReportsAPI\NESReportsDAL\bin\Debug\NESReportsDAL.dll
 D:\Gouse\API\NESReportsAPI\NESReportsDAL\bin\Debug\NESReportsDAL.pdb
 D:\Gouse\API\NESReportsAPI\NESReportsDAL\bin\Debug\Google.Protobuf.dll
+D:\Gouse\API\NESReportsAPI\NESReportsDAL\bin\Debug\Microsoft.Owin.dll
 D:\Gouse\API\NESReportsAPI\NESReportsDAL\bin\Debug\MySql.Data.dll
 D:\Gouse\API\NESReportsAPI\NESReportsDAL\bin\Debug\NESReportsDTO.dll
 D:\Gouse\API\NESReportsAPI\NESReportsDAL\bin\Debug\Newtonsoft.Json.dll
 D:\Gouse\API\NESReportsAPI\NESReportsDAL\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\Gouse\API\NESReportsAPI\NESReportsDAL\bin\Debug\Owin.dll
 D:\Gouse\API\NESReportsAPI\NESReportsDAL\bin\Debug\Google.Protobuf.xml
+D:\Gouse\API\NESReportsAPI\NESReportsDAL\bin\Debug\Microsoft.Owin.xml
 D:\Gouse\API\NESReportsAPI\NESReportsDAL\bin\Debug\MySql.Data.xml
 D:\Gouse\API\NESReportsAPI\NESReportsDAL\bin\Debug\NESReportsDTO.pdb
 D:\Gouse\API\NESReportsAPI\NESReportsDAL\bin\Debug\Newtonsoft.Json.xml

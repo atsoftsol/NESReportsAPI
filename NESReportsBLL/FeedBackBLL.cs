@@ -22,11 +22,11 @@ namespace NESReportsBLL
         /// <param name="StartDate"></param>
         /// <param name="EndDate"></param>
         /// <returns></returns>
-        public FeedBackDTO GetFeedBackReportSummary(string StateCodes, string DistrictCodes, string BranchCodes, string ClassCodes, int feedbacktype, string feedbackcategory, string StartDate, string EndDate)
+        public FeedBackDTO GetFeedBackReportSummary(string StateCodes, string DistrictCodes, string BranchCodes, string ClassCodes, int feedbacktype, string feedbackcategory,string feedbackSubCategories, string StartDate, string EndDate)
         {
             try
             {
-                return FeedBackReportDAL.GetFeedBackSummary(StateCodes, DistrictCodes, BranchCodes, ClassCodes, feedbacktype, feedbackcategory, StartDate, EndDate);
+                return FeedBackReportDAL.GetFeedBackSummary(StateCodes, DistrictCodes, BranchCodes, ClassCodes, feedbacktype, feedbackcategory, feedbackSubCategories, StartDate, EndDate);
             }
             catch (Exception)
             {
@@ -59,6 +59,19 @@ namespace NESReportsBLL
             try
             {
                 return FeedBackReportDAL.GetFeedBackCategory();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+
+        public List<FeedBackSubCategory> GetFeedBackSubCategory(string feedbackcategoryIds)
+        {
+            try
+            {
+                return FeedBackReportDAL.GetFeedBackSubCategory(feedbackcategoryIds);
             }
             catch (Exception)
             {

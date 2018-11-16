@@ -118,8 +118,6 @@ namespace NESReportsDAL
             }
         }
 
-
-
         /// <summary>
         /// function that creates a list of an object from the given data table
         /// </summary>
@@ -267,51 +265,60 @@ namespace NESReportsDAL
                         {
                             fromDate = dr["Target"].ToString();
                             toDate = dr["Duration"].ToString();
-                            string[] splitfromDate = fromDate.Split(':');
-                            TimeSpan spfromdate = new TimeSpan(int.Parse(splitfromDate[0]), int.Parse(splitfromDate[1]), int.Parse(splitfromDate[2]));
-                            string[] splittoDate = toDate.Split(':');
-                            TimeSpan sptodate = new TimeSpan(int.Parse(splittoDate[0]), int.Parse(splittoDate[1]), int.Parse(splittoDate[2]));
-                            TimeSpan difference = spfromdate.Subtract(sptodate);
 
-                            if (difference.TotalHours >= 0)
+                            if (fromDate != "00:00:00")
                             {
-                                dr["Diff"] = string.Format("{0}:{1}:{2}",
-                                    difference.TotalHours < 10 ?
-                                    "0" + ((int)difference.Hours).ToString() : ((int)difference.Hours).ToString(),
-                                    difference.Minutes < 10 ?
-                                    "0" + ((int)difference.Minutes).ToString() : ((int)difference.Minutes).ToString()
-                                , difference.Seconds < 10 ?
-                                    "0" + ((int)difference.Seconds).ToString() : ((int)difference.Seconds).ToString());
+
+                                string[] splitfromDate = fromDate.Split(':');
+                                TimeSpan spfromdate = new TimeSpan(int.Parse(splitfromDate[0]), int.Parse(splitfromDate[1]), int.Parse(splitfromDate[2]));
+                                string[] splittoDate = toDate.Split(':');
+                                TimeSpan sptodate = new TimeSpan(int.Parse(splittoDate[0]), int.Parse(splittoDate[1]), int.Parse(splittoDate[2]));
+                                TimeSpan difference = spfromdate.Subtract(sptodate);
+
+                                if (difference.TotalHours >= 0)
+                                {
+                                    dr["Diff"] = string.Format("{0}:{1}:{2}",
+                                        difference.TotalHours < 10 ?
+                                        "0" + ((int)difference.Hours).ToString() : ((int)difference.Hours).ToString(),
+                                        difference.Minutes < 10 ?
+                                        "0" + ((int)difference.Minutes).ToString() : ((int)difference.Minutes).ToString()
+                                    , difference.Seconds < 10 ?
+                                        "0" + ((int)difference.Seconds).ToString() : ((int)difference.Seconds).ToString());
+                                }
+                                else
+                                {
+                                    int hours = (int)difference.Hours;
+                                    int minutes = (int)difference.Minutes;
+                                    int seconds = (int)difference.Seconds;
+
+                                    if (hours < 0)
+                                    {
+                                        hours = hours * -1;
+                                    }
+
+                                    if (minutes < 0)
+                                    {
+                                        minutes = minutes * -1;
+                                    }
+
+                                    if (seconds < 0)
+                                    {
+                                        seconds = seconds * -1;
+                                    }
+
+
+                                    dr["Diff"] = "-" + string.Format("{0}:{1}:{2}",
+                                        (hours < 10) ?
+                                        "0" + (hours).ToString() : (hours).ToString(),
+                                        (minutes < 10) ?
+                                        "0" + (minutes).ToString() : (minutes).ToString()
+                                    , (seconds < 10) ?
+                                        "0" + (seconds).ToString() : (seconds).ToString());
+                                }
                             }
                             else
                             {
-                                int hours = (int)difference.Hours;
-                                int minutes = (int)difference.Minutes;
-                                int seconds = (int)difference.Seconds;
-
-                                if (hours < 0)
-                                {
-                                    hours = hours * -1;
-                                }
-
-                                if (minutes < 0)
-                                {
-                                    minutes = minutes * -1;
-                                }
-
-                                if (seconds < 0)
-                                {
-                                    seconds = seconds * -1;
-                                }
-
-
-                                dr["Diff"] = "-" + string.Format("{0}:{1}:{2}",
-                                    (hours < 10) ?
-                                    "0" + (hours).ToString() : (hours).ToString(),
-                                    (minutes < 10) ?
-                                    "0" + (minutes).ToString() : (minutes).ToString()
-                                , (seconds < 10) ?
-                                    "0" + (seconds).ToString() : (seconds).ToString());
+                                dr["Diff"] = "00:00:00";
                             }
                         }
 
@@ -339,7 +346,6 @@ namespace NESReportsDAL
             }
 
         }
-
 
         /// <summary>
         /// 
@@ -408,7 +414,58 @@ namespace NESReportsDAL
             }
         }
 
-    }
+        /// <summary>
+        /// check login
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public AdminLogin CheckLogin(string userName, string password)
+        {
+            try
+            {
+                AdminLogin adminLogin = new AdminLogin();
+                string connectionString = ConfigurationManager.ConnectionStrings["OracleSchoolString"].ConnectionString;
+                using (OracleConnection con = new OracleConnection(connectionString))
+                {
+                    using (OracleCommand cmd = new OracleCommand("AVMODULE_LOGINCHECK", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add("iUSERNAME", OracleDbType.Varchar2).Value = userName;
+                        cmd.Parameters.Add("iPASSWORD", OracleDbType.Varchar2).Value = password;
+                        cmd.Parameters.Add("DATACUR", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
 
+                        using (OracleDataAdapter sda = new OracleDataAdapter(cmd))
+                        {
+                            using (OracleDataAdapter sqlDataAdapter = new OracleDataAdapter(cmd))
+                            {
+                                DataTable dt = new DataTable();
+                                sqlDataAdapter.Fill(dt);
+
+                                if (dt != null && dt.Rows.Count > 0)
+                                {
+                                    adminLogin.id = int.Parse(dt.Rows[0]["SLNO"].ToString());
+                                    adminLogin.userName = dt.Rows[0]["USER_NAME"].ToString();
+                                 
+                                }
+                                else
+                                {
+
+                                }
+                            }
+
+                        }
+                    }
+                }
+
+                return adminLogin;
+
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+    }
 
 }

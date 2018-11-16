@@ -27,4 +27,7 @@ D:\Gouse\API\NESReportsAPI\NESReportsDAL\bin\Release\NESReportsDTO.pdb
 D:\Gouse\API\NESReportsAPI\NESReportsDAL\bin\Release\Newtonsoft.Json.xml
 D:\Gouse\API\NESReportsAPI\NESReportsDAL\obj\Release\NESReportsDAL.dll
 D:\Gouse\API\NESReportsAPI\NESReportsDAL\obj\Release\NESReportsDAL.pdb
+D:\Gouse\API\NESReportsAPI\NESReportsDAL\bin\Release\Microsoft.Owin.dll
+D:\Gouse\API\NESReportsAPI\NESReportsDAL\bin\Release\Owin.dll
+D:\Gouse\API\NESReportsAPI\NESReportsDAL\bin\Release\Microsoft.Owin.xml
 D:\Gouse\API\NESReportsAPI\NESReportsDAL\obj\Release\NESReportsDAL.csprojResolveAssemblyReference.cache
