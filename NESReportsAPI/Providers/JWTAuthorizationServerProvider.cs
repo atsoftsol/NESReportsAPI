@@ -1,16 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.Owin.Security.OAuth;
-using Microsoft.Owin.Security.OAuth;
 using System.Linq;
 using System.Web;
+using Microsoft.Owin.Security.OAuth;
+using System;
+using System.Collections.Generic;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using NESReportsBLL;
 using Microsoft.Owin.Security;
+using NESReportsDTO;
 
 namespace NESReportsAPI.Providers
 {
-    public class AuthorizationProvider : OAuthAuthorizationServerProvider
+    public class JWTAuthorizationServerProvider : OAuthAuthorizationServerProvider
     {
-        LoginBLL loginBLL = new LoginBLL();
+        CommonHeaderBLL loginBLL = new CommonHeaderBLL();
 
         public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
@@ -20,20 +25,18 @@ namespace NESReportsAPI.Providers
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
             var identity = new ClaimsIdentity(context.Options.AuthenticationType);
-            Users userDetails = await loginBLL.ValidateUser(context.UserName, context.Password);
+            AdminLogin userDetails = loginBLL.CheckLogin(context.UserName, context.Password);
 
             if (userDetails != null)
             {
-                if (!string.IsNullOrEmpty(userDetails.Username) && userDetails.ContentProviderId != 0)
+                if (!string.IsNullOrEmpty(userDetails.userName) && userDetails.id != 0)
                 {
-                    identity.AddClaim(new Claim("Username", userDetails.Username));
-                    identity.AddClaim(new Claim("UserRole", userDetails.UserRole));
-                    identity.AddClaim(new Claim("ContentProviderId", Convert.ToString(userDetails.ContentProviderId)));
-                    identity.AddClaim(new Claim("AffiliateId", Convert.ToString(userDetails.AffiliateId)));
+                    identity.AddClaim(new Claim("Username", userDetails.userName));
+                    identity.AddClaim(new Claim("UserId", Convert.ToString(userDetails.id)));
 
                     var authenticationProperties = new AuthenticationProperties(new Dictionary<string, string>
                 {
-                    { "username", userDetails.Username }, { "userRole",userDetails.UserRole }
+                    { "username", userDetails.userName }
                 });
 
                     var ticket = new AuthenticationTicket(identity, authenticationProperties);
