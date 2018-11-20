@@ -57,6 +57,7 @@
     <Compile Include="AVReportBLL.cs" />
     <Compile Include="CommonHeaderBLL.cs" />
     <Compile Include="FeedBackBLL.cs" />
+    <Compile Include="InspectionBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -67,11 +67,4 @@ namespace NESReportsDTO
         public string Name { get; set; }
     }
 
-
-    public class InspectionSubCategory
-    {
-        public int SubCategoryId { get; set; }
-        public string Name { get; set; }
-    }
-
 }

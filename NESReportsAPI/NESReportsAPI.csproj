@@ -108,6 +108,7 @@
     <Compile Include="Controllers\AVReportController.cs" />
     <Compile Include="Controllers\CommonHeaderController.cs" />
     <Compile Include="Controllers\FeedBackReportController.cs" />
+    <Compile Include="Controllers\InspectionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

@@ -446,12 +446,8 @@ namespace NESReportsDAL
                                 {
                                     adminLogin.id = int.Parse(dt.Rows[0]["SLNO"].ToString());
                                     adminLogin.userName = dt.Rows[0]["USER_NAME"].ToString();
-                                 
                                 }
-                                else
-                                {
-
-                                }
+                            
                             }
 
                         }
