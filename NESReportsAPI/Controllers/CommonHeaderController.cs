@@ -162,6 +162,27 @@ namespace NESReportsAPI.Controllers
             }
         }
 
+
+        /// <summary>
+        /// Get Content 
+        /// </summary>
+        /// <param name="ReportType"></param>
+        /// <returns></returns>
+        [Route("content")]
+        public IHttpActionResult GetContent()
+        {
+            try
+            {
+                
+                CommonHeaderBLL commonHeaderBLL = new CommonHeaderBLL();
+                return Ok(commonHeaderBLL.GetContent());
+            }
+            catch (Exception ex)
+            {
+                return InternalServerError(ex);
+            }
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -170,7 +191,6 @@ namespace NESReportsAPI.Controllers
         /// <returns></returns>
         [Route("login")]
         [HttpPost]
-
         public IHttpActionResult CheckLogin([FromBody] Login login)
         {
             try

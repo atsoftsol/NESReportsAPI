@@ -123,7 +123,7 @@ namespace NESReportsDAL
         /// Get Subjects
         /// </summary>
         /// <returns></returns>
-        public List<Subject> GetSubjects()
+        public List<Subject> GetoSubjects()
         {
             try
             {
@@ -215,9 +215,6 @@ namespace NESReportsDAL
 
         }
 
-
-
-
         /// <summary>
         /// 
         /// </summary>
@@ -253,8 +250,7 @@ namespace NESReportsDAL
 
         }
 
-
-          /// <summary>
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="districtIds"></param>
@@ -287,8 +283,6 @@ namespace NESReportsDAL
             }
 
         }
-
-        
 
         /// <summary>
         /// Get Category By Report ID
@@ -383,6 +377,66 @@ namespace NESReportsDAL
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public List<ContentType> GetContent()
+        {
+            try
+            {
+                string connectionString = ConfigurationManager.ConnectionStrings["OracleMasterString"].ConnectionString;
+                using (OracleConnection con = new OracleConnection(connectionString))
+                {
+                    using (OracleCommand cmd = new OracleCommand("GET_CONTENT_MT", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add("DATACUR", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
+
+                        using (OracleDataAdapter sda = new OracleDataAdapter(cmd))
+                        {
+                            DataTable dt = new DataTable();
+                            sda.Fill(dt);
+                            return CommonDAL.CreateListFromTable<ContentType>(dt);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+
+        public List<Subject> GetSubjects()
+        {
+            try
+            {
+                string connectionString = ConfigurationManager.ConnectionStrings["OracleSchoolString"].ConnectionString;
+                using (OracleConnection con = new OracleConnection(connectionString))
+                {
+                    using (OracleCommand cmd = new OracleCommand("GET_SUBJECTS", con))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.Add("DATACUR", OracleDbType.RefCursor).Direction = ParameterDirection.Output;
+
+                        using (OracleDataAdapter sda = new OracleDataAdapter(cmd))
+                        {
+                            DataTable dt = new DataTable();
+                            sda.Fill(dt);
+                            return CommonDAL.CreateListFromTable<Subject>(dt);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
         #endregion
     }
 }

@@ -53,7 +53,7 @@ namespace NESReportsDTO
     /// </summary>
     public class Subject
     {
-        public long subjectId { get; set; }
+        public decimal subjectId { get; set; }
         public string subjectCode { get; set; }
         public string subjectName { get; set; }
     }
@@ -86,6 +86,16 @@ namespace NESReportsDTO
         public string subCategoryName { get; set; }
         public int categoryId { get; set; }
         public int reportId { get; set; }
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public class ContentType
+    {
+        public decimal contentId { get; set; }
+        public string contentName { get; set; }
+        public string contentCode { get; set; }
     }
 
     /// <summary>

@@ -221,6 +221,18 @@ namespace NESReportsBLL
             }
         }
 
+        public List<ContentType> GetContent()
+        {
+            try
+            {
+                return commonHeaderDAL.GetContent();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
         /// <summary>
         /// 
         /// </summary>

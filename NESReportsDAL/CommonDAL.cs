@@ -78,7 +78,6 @@ namespace NESReportsDAL
             }
         }
 
-
         /// <summary>
         /// 
         /// </summary>
@@ -235,7 +234,7 @@ namespace NESReportsDAL
         /// </summary>
         /// <param name="cmd"></param>
         /// <returns></returns>
-        public static AVReportDTO OracleDataTableToJsonstring(OracleCommand cmd)
+        public static AVReportDTO OracleDataTableToJsonstring(OracleCommand cmd, bool strengthstatus)
         {
             try
             {
@@ -247,7 +246,10 @@ namespace NESReportsDAL
 
                     /// adding strength
                     List<Column> footercolumns = new List<Column>();
-                    footercolumns.Add(new Column { align = "right", name = "Strength" });
+                    if (strengthstatus == true)
+                    {
+                        footercolumns.Add(new Column { align = "right", name = "Strength" });
+                    }
                     footercolumns.Add(new Column { align = "center", name = "Target" });
                     footercolumns.Add(new Column { align = "center", name = "Duration" });
                     footercolumns.Add(new Column { align = "center", name = "Diff" });
@@ -279,7 +281,7 @@ namespace NESReportsDAL
                                 {
                                     dr["Diff"] = string.Format("{0}:{1}:{2}",
                                         difference.TotalHours < 10 ?
-                                        "0" + ((int)difference.Hours).ToString() : ((int)difference.Hours).ToString(),
+                                        "0" + ((int)difference.TotalHours).ToString() : ((int)difference.TotalHours).ToString(),
                                         difference.Minutes < 10 ?
                                         "0" + ((int)difference.Minutes).ToString() : ((int)difference.Minutes).ToString()
                                     , difference.Seconds < 10 ?

@@ -12,6 +12,10 @@ namespace NESReportsBLL
     {
         InspectionDAL inspectionDAL = new InspectionDAL();
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public List<InspectionType> GetInspectionType()
         {
             try
@@ -20,13 +24,18 @@ namespace NESReportsBLL
             }
             catch (Exception)
             {
-                
+
                 throw;
             }
-           
+
         }
 
-        public List<InspectionCategory> GetInspectionCategory(int ReportId)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ReportId"></param>
+        /// <returns></returns>
+        public List<InspectionCategory> GetInspectionCategory(string ReportId)
         {
             try
             {
@@ -40,7 +49,13 @@ namespace NESReportsBLL
 
         }
 
-        public List<InspectionSubCategory> GetInspectionSubCategory(int ReportId, int categoryId)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ReportId"></param>
+        /// <param name="categoryId"></param>
+        /// <returns></returns>
+        public List<InspectionSubCategory> GetInspectionSubCategory(string ReportId, string categoryId)
         {
             try
             {
@@ -53,5 +68,111 @@ namespace NESReportsBLL
             }
 
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public List<InspectionSegment> GetInspectionSegment()
+        {
+            try
+            {
+                return inspectionDAL.GetInspectionSegment();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="inSpection"></param>
+        /// <returns></returns>
+        public InspectionDTO InsertInspectionSegment(InspectionHeader inSpection)
+        {
+            try
+            {
+                return inspectionDAL.InsertInspectionSegment(inSpection);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="assembly"></param>
+        /// <param name="inspectionId"></param>
+        /// <returns></returns>
+        public Assembly InsertInspectionAssembly(Assembly assembly, int inspectionId)
+        {
+            try
+            {
+                return inspectionDAL.InsertInspectionAssembly(assembly, inspectionId);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="AdminissionNo"></param>
+        /// <param name="branchId"></param>
+        /// <returns></returns>
+        public List<StudentNo> GetStudentInfo(int AdminissionNo, int branchId)
+        {
+            try
+            {
+                return inspectionDAL.GetStudentInfo(AdminissionNo, branchId);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        public int InsertDiscipline(int inspectionId, int categoryId, int subCategoryId, int admissionId)
+        {
+            try
+            {
+                return inspectionDAL.InsertDiscipline(inspectionId, categoryId, subCategoryId, admissionId);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="inspectionId"></param>
+        /// <returns></returns>
+        public List<Discipline> GetDisciplineByInspectionId(int inspectionId)
+        {
+            try
+            {
+                return inspectionDAL.GetDisciplineByInspectionId(inspectionId);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+
     }
 }
